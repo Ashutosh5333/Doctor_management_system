@@ -1,7 +1,8 @@
 const express = require("express");
 const { connection } = require("./config/db");
+const { UserRouter } = require("./routes/User.route");
 
-
+ 
 
  const app = express()
  app.use(express.json());
@@ -10,6 +11,8 @@ const { connection } = require("./config/db");
         res.send("Welcome home ")
    })
 
+
+   app.use(UserRouter)
 
  app.listen(8000,async (req,res) =>{
        try{
