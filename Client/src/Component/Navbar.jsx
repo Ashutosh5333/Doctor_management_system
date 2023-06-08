@@ -10,7 +10,7 @@ const Navbar = () => {
      backgroundColor={"#050452"} borderEndStartRadius={"50px"}
     >
       <Box mt="40px" >
-     <Text color="#ffffff" textAlign={"center"} fontSize={{base:"1rem",md:"1.2rem",lg:"1.5rem"}}  >  Doctor Mangement System </Text>
+     <Text color="#ffffff" textAlign={"center"} fontSize={{base:"1rem",md:"1.2rem",lg:"1.5rem"}}  >  Doctor Appoinment Booking system</Text>
       </Box>
       
     </Box>
