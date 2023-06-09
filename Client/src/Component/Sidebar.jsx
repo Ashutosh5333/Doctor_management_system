@@ -16,7 +16,7 @@ const Sidebar = () => {
         position={"relative"} alignItems={"center"}  justifyContent={"center"}
        display={{base:"none", md:"flex", lg:"flex"}} flexDirection={"column"} >
                
-               <Link to="/dash"> 
+               <Link to="/"> 
               <Box  p="2" m="auto">      
                  <AiOutlineDashboard fontSize="1.2rem" />
               </Box>
