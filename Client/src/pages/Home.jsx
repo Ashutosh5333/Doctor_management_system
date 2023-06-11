@@ -1,6 +1,6 @@
 import { Box, Button, Image, Text } from '@chakra-ui/react'
 import React from 'react'
-
+import {Link} from "react-router-dom"
 import front  from "../Images/front.jpg"
 
 const Home = () => {
@@ -30,14 +30,21 @@ const Home = () => {
        flexDirection={{base:"column",md:"row",lg:"row"}}
        mt={{base:"40%", md:"22%",lg:"160px"}} 
       >
-         
          <Box   m={{base:"auto"}}  mt={{base:"20px"}}> 
+          <Link to="/login">
             <Button w="300px" bg="#050452" color="#ffffff" p="6"  borderRadius={"20px"}> Sign in </Button>
+          </Link>  
          </Box>
 
+        
+
          <Box  m={{base:"auto"}}     mt={{base:"10px"}}  >
+          <Link to="/sign"> 
             <Button w="300px" bg="#fff" boxShadow='dark-lg' p='6' borderRadius={"20px"} color="#050452"> Create an Account </Button>
+          </Link>
          </Box>
+
+       
 
 
       </Box>
