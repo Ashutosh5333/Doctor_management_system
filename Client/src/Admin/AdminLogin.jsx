@@ -5,14 +5,12 @@ import {
   Card,
   FormControl,
   FormLabel,
-  Image,
   Input,
   InputGroup,
   InputRightElement,
   Stack,
   Text,
   VStack,
-  useBreakpointValue,
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
@@ -86,7 +84,7 @@ const AdminLogin = () => {
             <Card
               w={{ base: "100%", md: "50%", lg: "450px" }}
               m="auto"
-              mt={{ base: "5%", md: "1px", lg: "0px" }}
+              mt={{ base: "15%", md: "20px", lg: "5px" }}
             >
               <Box rounded="lg" boxShadow={"lg"} p="8">
                 <Stack>

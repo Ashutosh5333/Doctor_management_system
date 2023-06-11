@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
-import {  Text, Image,} from '@chakra-ui/react'
-import {  Button,  Card,  CardBody,  Input,  InputGroup,  InputLeftElement,  InputRightElement,  VStack,  useColorModeValue,useToast,} from "@chakra-ui/react";
-import { CiUser } from "react-icons/ci";
-import { EmailIcon, UnlockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Card,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
+  Text,
+  VStack,
+  useColorModeValue,
+  useToast,
+} from "@chakra-ui/react";
+
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 import { useNavigate }from "react-router-dom"
 
@@ -41,103 +54,131 @@ const Signup = () => {
 
 
   return (
-    <Card py="3" maxW="lg" m="auto" mt="20">
-
-    <CardBody>
-    
-
+    <Box>
    
 
-      <Text>  Application Form   </Text>
+    <Box width={"100%"} position={"relative"}  m="auto">
+      <Card
+        w={{ base: "100%", md: "50%", lg: "450px" }}
+        m="auto"
+        mt={{ base: "5%", md: "20px", lg: "5px" }}
+      >
+        <Box rounded="lg" boxShadow={"lg"} p="8">
+          <Stack>
+            <Stack align={{ base: "start", lg: "center" }}>
+              <Text
+                textAlign={{ base: "start", lg: "center" }}
+                mb="15"
+                mt="10"
+                fontSize={{ base: "1rem", lg: "1.3rem" }}
+                fontWeight={"500"}
+              >
+                {" "}
+               Create your Account here
+              </Text>
+            </Stack>
 
+            <VStack maxW={"2xl"} spacing={5}>
+            <FormControl id="name">
+                <FormLabel
+                  mb="-10px"
+                  fontWeight={"400"}
+                  letterSpacing={0.5}
+                  color="gray"
+                  fontSize={"1.1rem"}
+                >
+                Name
+                </FormLabel>
+              </FormControl>
 
-    
-     <Button fontSize={"1.2em"} fontWeight="600" width="full" background={"blue.500"}  colorScheme="blue" color="#fff"
-     mb="5" > Login in with Facebook </Button>
-     
-      <VStack maxW="2xl" spacing={5}>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            position="absolute"
-            top="1"
-            children={<CiUser color="gray" size="23" />}
-          />
-          <Input
-            placeholder="Name*"
-            type="name"
-            name="name"
-            onChange={handleChange}
+              <Input
+                type="text"
+                name="name"
+                mt="-10px"
+                onChange={handleChange}
+              />
+
+              <FormControl id="email">
+                <FormLabel
+                  mb="-10px"
+                  fontWeight={"400"}
+                  letterSpacing={0.5}
+                  color="gray"
+                  fontSize={"1.1rem"}
+                >
+                  {" "}
+                  Email{" "}
+                </FormLabel>
+              </FormControl>
+              <Input
+                type="email"
+                name="email"
+                mt="-10px"
+                onChange={handleChange}
+              />
             
-            size="lg"
-          />
-        </InputGroup>
+
+              
+
+              <FormControl id="email">
+                <FormLabel
+                  mb="-10px"
+                  fontWeight={"400"}
+                  letterSpacing={0.5}
+                  color="gray"
+                  fontSize={"1.1rem"}
+                >
+                  {" "}
+                  Password{" "}
+                </FormLabel>
+              </FormControl>
+
+              <InputGroup position="relative">
+                <Input
+                  type={show ? "text" : "password"}
+                  name="password"
+                  onChange={handleChange}
+                />
+                
+                <InputRightElement
+                  width="4.5rem"
+                  position="absolute"
+                  top="1"
+                >
+                  <Button
+                    h="1.75rem"
+                    size="lg"
+                    variant="link"
+                    onClick={handleClickShow}
+                  >
+                    {show ? (
+                      <ViewIcon color="gray.400" boxSize={5} />
+                    ) : (
+                      <ViewOffIcon color="gray.400" boxSize={5} />
+                    )}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+             
 
 
-        <InputGroup position="relative">
-          <InputLeftElement
-            pointerEvents="none"
-            position="absolute"
-            top="1"
-            children={<EmailIcon color="gray.400" boxSize={5} />}
-          />
-          <Input
-            placeholder="Email*"
-            type="email"
-            name="email"
-            size="lg"
-            onChange={handleChange}
-           
-          />
-        </InputGroup>
+              <Button
+                width={{ base: "100%", md: "50%", lg: "50%" }}
+                borderRadius={"20"}
+                size="lg"
+                onClick={handleSubmit}
+                colorScheme={colorScheme}
+              >
+               Signup
+              </Button>
+            </VStack>
+          </Stack>
+        </Box>
+      </Card>
 
-        <InputGroup position="relative">
-          <InputLeftElement
-            pointerEvents="none"
-            position="absolute"
-            top="1"
-            children={<UnlockIcon color="gray.400" boxSize={5} />}
-          />
-          <Input
-            type={show ? "text" : "password"}
-            placeholder="Password*"
-            name="password"
-            size="lg"
-            onChange={handleChange}
-          />
-          <InputRightElement width="4.5rem" position="absolute" top="1">
-            <Button
-              h="1.75rem"
-              size="sm"
-              variant="link"
-              onClick={handleClickShow}
-            >
-              {show ? (
-                <ViewOffIcon color="gray.400" boxSize={5} />
-              ) : (
-                <ViewIcon color="gray.400" boxSize={5} />
-              )}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-        <Button
-        onClick={handleSubmit}
-          width="100%"
-          colorScheme={colorScheme}
-          size="lg"
-        >
-          Signup
-        </Button>
-      </VStack>
+    </Box>
+  </Box>
 
-     <Text  fontSize="1rem"
-       textAlign={"center"} mt={"5"}>
-        . Learn More
-
-     </Text> 
-
-    </CardBody>
-  </Card>
   )
 }
 

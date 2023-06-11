@@ -35,14 +35,12 @@ const Login = () => {
 
   return (
   <>
-       <Card py="3"  maxW="lg" m="auto" mt="20" >
+       <Card  boxShadow={"lg"} maxW="lg" m="auto" >
           
           <CardBody  >
     
           <Box mt="10" >
-                    <Heading>
-                       Login Form
-                    </Heading>
+                    <Text fontSize={"1.5rem"} >Login </Text>
                   <Text color={"#FFFFFF"} textAlign={"center"} fontWeight={"600"} > Login </Text>
            </Box>
     
