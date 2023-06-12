@@ -9,7 +9,6 @@
     font-size: 18px;
     background: #fff;
   
-    /* Center slide text vertically */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,14 +22,6 @@
   }
   
   .swiper-slide {
-    width: 80%;
-  }
-  
-  .swiper-slide:nth-child(2n) {
-    width: 60%;
-  }
-  
-  .swiper-slide:nth-child(3n) {
-    width: 40%;
+    width: 100%;
   }
   
