@@ -13,7 +13,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { EmailIcon, UnlockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 import { useNavigate } from "react-router-dom";
 import loginlogo from "../Images/loginlogo.jpg";
@@ -105,9 +104,12 @@ const Login = () => {
             </Text>
 
             <Box
-             mt="5"
+
               display="flex"
               justifyContent={"space-around"}
+              w="30vw"
+              m="auto"
+              mt="5"
             >
               <Box>
                 <Image

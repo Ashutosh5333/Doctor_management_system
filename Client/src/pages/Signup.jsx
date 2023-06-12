@@ -167,7 +167,11 @@ const Signup = () => {
               </VStack>
 
       
-          <Box mt="5" display="flex" justifyContent={"space-around"}>
+          <Box display="flex" justifyContent={"space-around"}
+            w="30vw"
+              m="auto"
+              mt="5"
+          >
             <Box>
               <Image
                 w="50px"
