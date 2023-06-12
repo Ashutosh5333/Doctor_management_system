@@ -22,10 +22,9 @@ const { isOpen, onOpen, onClose } = useDisclosure()
  
   return (
     <>
-    <Box  >
-      
+
       <Box  px={4} mb={20} shadow='lg' borderBottom={{base : '0px', md :'0px'}} padding='10px'
-      borderRadius={"20"}
+      borderRadius={"20"} h="20"
       >
           <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
             <IconButton color='black' size='md' bg='white' icon={isOpen ? <CloseIcon /> : <HamburgerIcon fontSize='30px'/>} aria-label='Open Menu' display={{ md: 'none' }} onClick={isOpen ? onClose : onOpen}/>
@@ -66,8 +65,7 @@ const { isOpen, onOpen, onClose } = useDisclosure()
 
 
     
-    </Box>
-
+   
     </>
   )
 }
