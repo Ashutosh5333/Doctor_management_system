@@ -17,7 +17,6 @@ const Authenticate = (req,res,next) =>{
          else{
             res.send({msg:"you are not authenticated login please"})
          }
-
      }
      else{
         res.send({msg:"you are not authenticated"})

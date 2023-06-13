@@ -1,6 +1,8 @@
 const express = require("express");
 const { connection } = require("./config/db");
 const { UserRouter } = require("./routes/User.route");
+const { DoctorRouter } = require("./routes/Docter.route");
+const { Authenticate } = require("./middleware/Authenticate");
 
  
 
@@ -13,6 +15,8 @@ const { UserRouter } = require("./routes/User.route");
 
 
    app.use(UserRouter)
+   app.use(Authenticate)
+   app.use(DoctorRouter)
 
  app.listen(8000,async (req,res) =>{
        try{
