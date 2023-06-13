@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "./styles.css";
 import { AiFillHeart } from "react-icons/ai";
 import { GiHospitalCross } from "react-icons/gi";
+import { FaTooth } from "react-icons/fa";
 
 const SpecialistSwiper = () => {
   return (
@@ -63,8 +64,8 @@ const SpecialistSwiper = () => {
               m="auto"
               textAlign={"center"}
             >
-              <Box m="auto" h="50px" w="50px" mt="30px" ml="30px">
-                <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXcT4bzaHq2A65ssZdTY1tcAInNI4f9bCAVw&usqp=CAU" />
+             <Box m="auto" h="50px" w="50px" mt="35px" ml="35px">
+                <FaTooth fontSize={"2rem"} bg="#d13470" color="#46b4e3" />
               </Box>
               <Text fontSize={"1rem"} color="#fff" mt="4" fontWeight={"600"}>
                 {" "}

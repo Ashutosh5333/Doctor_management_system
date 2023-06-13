@@ -32,6 +32,15 @@ const Customdashboard = () => {
              <SpecialistSwiper/>
           </Box>
        </Box>
+
+       
+       <Box h="35vh" mt="10" >
+         <Text     color="#220f7a" fontWeight={"700"} p="5"> Available Doctors</Text>
+          <Box border="3px solid black" h="30vh">
+            
+            
+          </Box>
+       </Box>
           
 
           
