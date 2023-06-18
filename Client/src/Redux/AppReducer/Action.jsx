@@ -1,5 +1,5 @@
-import * as types from "./ActionTypes";
 import axios from "axios";
+import * as types from "./ActionTypes";
 
 //  ----------  Peoject  Data -------------   //
 
@@ -24,8 +24,7 @@ const getdatafailure = () => {
 
 export const GetProjectData = (dispatch) => {
   dispatch(getdatareq());
-  return axios
-    .get(`http://localhost.8000/doctor`)
+  return axios.get(`http://localhost:8000/doctor`)
     .then((r) => {
       return dispatch(getdatasuccess(r.data));
     })
