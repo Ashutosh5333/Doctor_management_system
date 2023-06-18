@@ -13,10 +13,11 @@ import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-const AllDoctor = () => {
+const AllDoctor = ({inputdoctor}) => {
   const dispatch = useDispatch();
   const doctordata = useSelector((store) => store.AppReducer.Doctordata);
-  console.log("Alldoctor", doctordata);
+  console.log("input", inputdoctor)
+  // console.log(doctordata)
 
   useEffect(() => {
     dispatch(GetProjectData);
@@ -24,14 +25,31 @@ const AllDoctor = () => {
 
   return (
     <>
-      <Box  >
+      <Box  w="90vw" m="auto" >
         <SimpleGrid columns={[1, 2, 3]} spacing={4}>
-          {doctordata.length > 0 && doctordata.map((el) => {
-            return  <Card maxW="sm">
+          {
+            doctordata.filter((value) => {
+                if (inputdoctor == "") {
+                  return value;
+                } else if (
+                  value.consultant.toLowerCase().includes(
+                    inputdoctor.toLowerCase()
+                  )
+                ) {
+                  return value;
+                } else if (
+                  value.name.toLowerCase().includes(inputdoctor.toLowerCase())
+                ) {
+                  return value;
+                }
+              })    
+            .map((el) => {
+            return  <Card >
 
             <CardBody>
               <Image
                objectFit='cover'
+               boxSize={"300"}
                  m="auto"
                 src={el.pic}
                 alt="Doctor Image"

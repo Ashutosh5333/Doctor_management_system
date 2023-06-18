@@ -7,8 +7,8 @@ import SpecialistSwiper from '../Swiper/SpecialistSwiper';
 import AllDoctor from '../Component/AllDoctor';
 
 
-const Customdashboard = () => {
-    // h={{ base:"100vh ",md: "85vh", lg: "80vh" }}
+const Customdashboard = ({inputdoctor}) => {
+   
 
   return (
     <>
@@ -37,9 +37,9 @@ const Customdashboard = () => {
        
        <Box h="auto" mt="10" >
          <Text     color="#220f7a" fontWeight={"700"} p="5"> Available Doctors</Text>
-          <Box border="3px solid black"  >
+          <Box   >
             
-               <AllDoctor/>
+               <AllDoctor inputdoctor={inputdoctor}/>
 
           </Box>
        </Box>
