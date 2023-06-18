@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetProjectData } from "../Redux/AppReducer/Action";
 import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const AllDoctor = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const AllDoctor = () => {
         <SimpleGrid columns={[1, 2, 3]} spacing={4}>
           {doctordata.length > 0 && doctordata.map((el) => {
             return  <Card maxW="sm">
+
             <CardBody>
               <Image
                objectFit='cover'
@@ -35,15 +37,19 @@ const AllDoctor = () => {
                 alt="Doctor Image"
                 borderRadius="lg"
               />
+
+               <Link to={`/doctordash/${el._id}`}> 
               <Stack mt="6" spacing="3">
                 <Heading size="md">{el.name} </Heading>
-                <Text noOfLines={"2"} letterSpacing={"1px"}>
+                <Text noOfLines={"1"} letterSpacing={"1px"}>
                    {el.About}
                 </Text>
                 <Text color="blue.600" fontWeight={"600"}  letterSpacing={"1px"} fontSize={"1rem"} >
                  {el.consultant}
                 </Text>
               </Stack>
+              </Link>
+
             </CardBody>
           </Card>
           })}

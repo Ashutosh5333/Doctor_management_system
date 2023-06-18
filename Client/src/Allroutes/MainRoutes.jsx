@@ -6,6 +6,7 @@ import Signup from '../pages/Signup'
 import Admin from '../Admin/Admin'
 import AdminLogin from '../Admin/AdminLogin'
 import UserDashboard from '../Component/UserDashboard'
+import SingleDoctor from '../Component/SingleDoctor'
 
 
 const MainRoutes = () => {
@@ -18,6 +19,7 @@ const MainRoutes = () => {
      <Route  path='/login' element={<Login/>} />
      <Route  path='/sign' element={<Signup/>} />
      <Route  path='/doctordash' element={<UserDashboard/>} />
+     <Route  path='/doctordash/:id' element={<SingleDoctor/>} />
      <Route  path='/admin' element={<Admin/>} />
      <Route  path='/adminlogin' element={<AdminLogin/>} />
 
