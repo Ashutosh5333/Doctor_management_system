@@ -3,7 +3,7 @@ import * as types from "./ActionTypes";
 const initailState = {
   isLoading: false,
   isError: false,
-  Projectdata: [],
+  Doctordata: [],
 };
 
 export const Reducer = (state = initailState, action) => {
@@ -20,14 +20,14 @@ export const Reducer = (state = initailState, action) => {
       return {
         ...state,
         isLoading: false,
-        Projectdata: payload,
+        Doctordata: payload,
       };
 
     case types.GETDOCTORFAILURE:
       return {
         ...state,
         isLoading: true,
-        Projectdata: [],
+        Doctordata: [],
       };
 
     default:

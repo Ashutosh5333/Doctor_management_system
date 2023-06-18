@@ -102,6 +102,8 @@ const Login = () => {
               {" "}
               Forgot password ?{" "}
             </Text>
+          
+        
 
             <Box
 
@@ -125,6 +127,17 @@ const Login = () => {
                 />
               </Box>
             </Box>
+
+            <Box  w="80%" m="auto" mt="15px" >  
+            <Text textAlign={"center"} fontWeight={"600"}> Don't have an account ? 
+
+               <Link to="/sign">
+            <span style={{color:"blue"}} > Signup here </span> 
+               </Link>
+            
+             </Text>
+           </Box>
+
           </CardBody>
         </Card>
       </Box>

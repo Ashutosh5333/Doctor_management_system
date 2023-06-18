@@ -16,7 +16,7 @@ import {
 
 
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const colorScheme = useColorModeValue("blue", "green");
@@ -187,6 +187,17 @@ const Signup = () => {
               />
             </Box>
           </Box>
+
+          <Box  w="80%" m="auto" mt="15px" >  
+            <Text textAlign={"center"} fontWeight={"600"}> Already  have an account ? 
+
+               <Link to="/login">
+            <span style={{color:"blue"}} > Signup in </span> 
+               </Link>
+            
+             </Text>
+           </Box>
+
         </Card>
       </Box>
     </Box>

@@ -9,7 +9,7 @@ const UserDashboard = () => {
 
   return (
     <>
-     <Box border={"3px solid black"} >
+     <Box  >
      {
       !SmallScreen && 
        <UserNavbar/>
