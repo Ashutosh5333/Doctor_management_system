@@ -1,4 +1,4 @@
-import { Box, Image,Text ,Flex } from "@chakra-ui/react";
+import { Box, Text ,Flex } from "@chakra-ui/react";
 import React from "react";
 import { BiHomeAlt } from "react-icons/bi";
 import {BsSearch} from "react-icons/bs"
@@ -37,8 +37,8 @@ const UserbottomNavbar = () => {
          borderRadius={"10px"} p="2"
           justifyContent="space-around" bg="skyblue"
         >
-        <Text color="#fff" mt="1"><BiHomeAlt/> </Text> 
-        <Text color="#fff"> Home </Text> 
+        <Text color="#fff" mt="3"><BiHomeAlt/> </Text> 
+        <Text color="#fff" mt="2"> Home </Text> 
         </Flex>:
           <Flex  w="20vw" h="5vh" m="auto"
           justifyContent="space-around"
@@ -56,8 +56,8 @@ const UserbottomNavbar = () => {
            justifyContent="space-around" mt="1" bg="skyblue"
            borderRadius={"10px"} p="2"
         >
-        <Text color="#fff" mt="1"><BsSearch/> </Text> 
-        <Text color="#fff"> Search </Text> 
+        <Text color="#fff" mt="3"><BsSearch/> </Text> 
+        <Text color="#fff" mt="2"> Search </Text> 
       
         </Flex>: <Flex  w="20vw" h="5vh" m="auto"
             justifyContent="space-around"
@@ -75,11 +75,11 @@ const UserbottomNavbar = () => {
       <Link to="/userprofile">
       {
         path ==="/userprofile" ? <Flex w="20vw" h="6vh" m="auto"
-           justifyContent="space-around" mt="1" bg="skyblue"
+           justifyContent="space-around"  bg="skyblue"
            borderRadius={"10px"} p="2"
         >
-        <Text color="#fff" mt="1"><FaUserCircle/> </Text> 
-        <Text color="#fff"> Profile </Text> 
+        <Text color="#fff" mt="3"><FaUserCircle/> </Text> 
+        <Text color="#fff" mt="2"> Profile </Text> 
         </Flex> : <Flex w="20vw" h="5vh" m="auto"
            justifyContent="space-around"
         >

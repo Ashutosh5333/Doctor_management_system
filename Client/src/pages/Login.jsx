@@ -1,17 +1,9 @@
-import React, { useState } from "react";
-import { Text, Box, Image, Heading } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import {
-  Button,
-  Card,
-  CardBody,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  VStack,
-  useColorModeValue,
-  useToast,
+  Box,  Button, Card,CardBody, FormControl,
+  FormLabel,FormErrorMessage, FormHelperText,  Input,Image,  Stack,  Text,  VStack,  useColorModeValue,useToast,
 } from "@chakra-ui/react";
+
 import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
@@ -20,7 +12,8 @@ import loginlogo from "../Images/loginlogo.jpg";
 const Login = () => {
   const colorScheme = useColorModeValue("blue", "green");
   const [show, setShow] = useState(false);
-
+  const [isEmail, setisEmail] = useState(false);
+  const [isPassword, setisPassword] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -38,7 +31,24 @@ const Login = () => {
     setShow(!show);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (post.email !== ""  && post.password !== "") {
+     toast({
+       position: "top",
+       colorScheme: "green",
+       status: "success",
+       title: "user created Account Sucessfully",
+       duration: 3000,
+     })
+ } 
+   if (post.email === "") {
+     setisEmail(true);
+   }
+   if (post.password === "") {
+     setisPassword(true);
+   }
+  
+  };
 
   return (
     <>
@@ -61,26 +71,53 @@ const Login = () => {
             </Text>
 
             <VStack maxW={"2xl"} spacing={5}>
+            <FormControl id="email" isInvalid={isEmail}>
+              <FormLabel
+                mb="10px"
+                color={isEmail ? "red" : "gray"}
+                fontWeight={"400"}
+                letterSpacing={0.5}
+                fontSize={"1.1rem"}
+              >
+                {" "}
+                Email{" "}
+              </FormLabel>
               <Input
-                placeholder="Email"
                 type="email"
                 name="email"
-                size="lg"
+                placeholder="Email"
                 bg="#e0e0de"
                 borderRadius={"20"}
-                color="#dedbd3"
                 onChange={handleChange}
               />
+            </FormControl>
+            <FormControl id="password" isInvalid={isPassword}>
+              <FormLabel
+                mb="10px"
+                fontWeight={"400"}
+                letterSpacing={0.5}
+                color={isEmail ? "red" : "gray"}
+                fontSize={"1.1rem"}
+              >
+                {" "}
+                Password{" "}
+              </FormLabel>
               <Input
-                type={show ? "text" : "password"}
-                placeholder="Password"
                 name="password"
-                size="lg"
                 bg="#e0e0de"
                 borderRadius={"20"}
-                color="#dedbd3"
+                placeholder="Password"
+                type="password"
                 onChange={handleChange}
               />
+              {!isPassword ? (
+                <FormHelperText h="10px"></FormHelperText>
+              ) : (
+                <FormErrorMessage color="red">
+                  Password is required.
+                </FormErrorMessage>
+              )}
+            </FormControl>
               <Button
                 width="100%"
                 size="lg"

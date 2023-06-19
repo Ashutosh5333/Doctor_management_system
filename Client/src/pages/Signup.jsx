@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box,
-  Button,
-  Card,
-  FormControl,
-  FormLabel,
-  Input,
-   Image,
-  Stack,
-  Text,
-  VStack,
-  useColorModeValue,
-  useToast,
+  Box,  Button, Card, FormControl,
+  FormLabel,FormErrorMessage, FormHelperText,  Input,Image,  Stack,  Text,  VStack,  useColorModeValue,useToast,
 } from "@chakra-ui/react";
-
-
 
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const colorScheme = useColorModeValue("blue", "green");
   const [show, setShow] = useState(false);
+  const [error, SetError] = useState(false);
+  const [isEmail, setisEmail] = useState(false);
+  const [isPassword, setisPassword] = useState(false);
+  const [isconfimPassword, setisconfirmPassword] = useState(false);
+  const [isName, setisName] = useState(false);
+  const [confimPassword, setconfirmPassword] = useState("");
+  const [matchpassword, setmatchpassword] = useState(false);
 
   const navigate = useNavigate();
   const toast = useToast();
@@ -31,6 +26,10 @@ const Signup = () => {
     name: "",
   });
 
+  console.log("post",post)
+
+  console.log("confrim",confimPassword)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     SetPost({ ...post, [name]: value });
@@ -40,137 +39,200 @@ const Signup = () => {
     setShow(!show);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (post.email !== "" && post.name !== "" && post.password !== ""
+       && confimPassword!==""
+    ) {
+      if (confimPassword !== post.password) {
+        setmatchpassword(true);
+        toast({
+        position: "top",
+        colorScheme: "red",
+        status: "error",
+        title: "password are not match",
+        duration: 3000,
+      });
+      }
+      else{
+        toast({
+          position: "top",
+          colorScheme: "green",
+          status: "success",
+          title: "user created Account Sucessfully",
+          duration: 3000,
+        });
+      }
+      
+    } else {
+      if (post.email === "") {
+        setisEmail(true);
+      }
+      if (post.password === "") {
+        setisPassword(true);
+      }
+      if (confimPassword === "") {
+        setisconfirmPassword(true);
+      }
+     
+      if (post.name === "") {
+        setisName(true);
+      }
+    }
+  };
 
   return (
     <Box boxShadow={"lg"}>
       <Box width={"100%"} position={"relative"} m="auto">
         <Card
           w={{ base: "100%", md: "50%", lg: "450px" }}
-          m="auto" border={"none"} p="8"
+          m="auto"
+          border={"none"}
+          p="8"
         >
-       
-         
-              <Text
-                textAlign={"center"}
-                fontWeight={"600"}
-                mb="5"
-                color="#220f7a"
-                fontSize={"1.8rem"}
+          <Text
+            textAlign={"center"}
+            fontWeight={"600"}
+            mb="5"
+            color="#220f7a"
+            fontSize={"1.8rem"}
+          >
+            {" "}
+            Signup{" "}
+          </Text>
+
+          <VStack maxW={"2xl"} spacing={5}>
+            <FormControl id="name" isInvalid={isName}>
+              <FormLabel
+                color={isName ? "red" : "gray"}
+                mb="10px"
+                fontWeight={"400"}
+                letterSpacing={0.5}
+                fontSize={"1.1rem"}
+              >
+                Name
+              </FormLabel>
+
+              <Input
+                type="text"
+                name="name"
+                placeholder="Name"
+                bg="#e0e0de"
+                borderRadius={"20"}
+                onChange={handleChange}
+              />
+              {!isName ? (
+                <FormHelperText h="10px"></FormHelperText>
+              ) : (
+                <FormErrorMessage color="red">
+                  Name is required.
+                </FormErrorMessage>
+              )}
+            </FormControl>
+
+            <FormControl id="email" isInvalid={isEmail}>
+              <FormLabel
+                mb="10px"
+                color={isEmail ? "red" : "gray"}
+                fontWeight={"400"}
+                letterSpacing={0.5}
+                fontSize={"1.1rem"}
               >
                 {" "}
-                Signup{" "}
-              </Text>
+                Email{" "}
+              </FormLabel>
+              <Input
+                type="email"
+                name="email"
+                placeholder="Email"
+                bg="#e0e0de"
+                borderRadius={"20"}
+                mt="-10px"
+                onChange={handleChange}
+              />
+            </FormControl>
 
-              <VStack maxW={"2xl"} spacing={5}>
-                <FormControl id="name">
-                  <FormLabel
-                    mb="-10px"
-                    fontWeight={"400"}
-                    letterSpacing={0.5}
-                    color="gray"
-                    fontSize={"1.1rem"}
-                  >
-                    Name
-                  </FormLabel>
-                </FormControl>
+            <FormControl id="password" isInvalid={isPassword}>
+              <FormLabel
+                mb="10px"
+                fontWeight={"400"}
+                letterSpacing={0.5}
+                color={isEmail ? "red" : "gray"}
+                fontSize={"1.1rem"}
+              >
+                {" "}
+                Password{" "}
+              </FormLabel>
+              <Input
+                name="password"
+                bg="#e0e0de"
+                borderRadius={"20"}
+                placeholder="Password"
+                type="password"
+                onChange={handleChange}
+              />
+              {!isPassword ? (
+                <FormHelperText h="10px"></FormHelperText>
+              ) : (
+                <FormErrorMessage color="red">
+                  Password is required.
+                </FormErrorMessage>
+              )}
+            </FormControl>
 
-                <Input
-                  type="text"
-                  name="name"
-                  mt="-10px"
-                  placeholder="Name"
-                  bg="#e0e0de"
-                  borderRadius={"20"}
-                  color="#dedbd3"
-                  onChange={handleChange}
-                />
+            <FormControl id="password" isInvalid={isPassword}>
+              <FormLabel
+                mb="10px"
+                fontWeight={"400"}
+                letterSpacing={0.5}
+                color={isPassword ? "red" : "gray"}
+                fontSize={"1.1rem"}
+              >
+                {" "}
+                Confirm Password{" "}
+              </FormLabel>
+              <Input
+                name="password"
+                bg="#e0e0de"
+                borderRadius={"20"}
+               type="password"
+                placeholder="Confirm Password"
+                onChange={(e) => setconfirmPassword(e.target.value)}
+              />
+              {!isconfimPassword ? (
+                <FormHelperText h="10px"></FormHelperText>
+              ) : (
+                <FormErrorMessage color="red">
+                  confirm is required.
+                </FormErrorMessage>
+              )}
 
-                <FormControl id="email">
-                  <FormLabel
-                    mb="-10px"
-                    fontWeight={"400"}
-                    letterSpacing={0.5}
-                    color="gray"
-                    fontSize={"1.1rem"}
-                  >
-                    {" "}
-                    Email{" "}
-                  </FormLabel>
-                </FormControl>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  bg="#e0e0de"
-                  borderRadius={"20"}
-                  color="#dedbd3"
-                  mt="-10px"
-                  onChange={handleChange}
-                />
+              {!matchpassword ? (
+                <FormHelperText h="10px"></FormHelperText>
+              ) : (
+                <FormErrorMessage color="red">
+                  Password are not Match
+                </FormErrorMessage>
+              )}
+            </FormControl>
 
-                <FormControl id="password">
-                  <FormLabel
-                    mb="-10px"
-                    fontWeight={"400"}
-                    letterSpacing={0.5}
-                    color="gray"
-                    fontSize={"1.1rem"}
-                  >
-                    {" "}
-                    Password{" "}
-                  </FormLabel>
-                </FormControl>
+            <Button
+              width="100%"
+              size="lg"
+              onClick={handleSubmit}
+              bg="#050452"
+              color="#fff"
+              borderRadius={"20"}
+            >
+              Signup
+            </Button>
+          </VStack>
 
-                <Input
-                  name="password"
-                  bg="#e0e0de"
-                  borderRadius={"20"}
-                  placeholder="Password"
-                  color="#dedbd3"
-                  onChange={handleChange}
-                />
-
-                <FormControl id="password">
-                  <FormLabel
-                    mb="-10px"
-                    fontWeight={"400"}
-                    letterSpacing={0.5}
-                    color="gray"
-                    fontSize={"1.1rem"}
-                  >
-                    {" "}
-                    Confirm Password{" "}
-                  </FormLabel>
-                </FormControl>
-
-                <Input
-                  type={show ? "text" : "password"}
-                  name="password"
-                  bg="#e0e0de"
-                  borderRadius={"20"}
-                  color="#dedbd3"
-                  placeholder="Confirm Password"
-                  onChange={handleChange}
-                />
-
-                <Button
-                  width="100%"
-                  size="lg"
-                  onClick={handleSubmit}
-                  bg="#050452"
-                  color="#fff"
-                  borderRadius={"20"}
-                >
-                  Signup
-                </Button>
-              </VStack>
-
-      
-          <Box display="flex" justifyContent={"space-around"}
+          <Box
+            display="flex"
+            justifyContent={"space-around"}
             w="30vw"
-              m="auto"
-              mt="5"
+            m="auto"
+            mt="5"
           >
             <Box>
               <Image
@@ -188,16 +250,15 @@ const Signup = () => {
             </Box>
           </Box>
 
-          <Box  w="80%" m="auto" mt="15px" >  
-            <Text textAlign={"center"} fontWeight={"600"}> Already  have an account ? 
-
-               <Link to="/login">
-            <span style={{color:"blue"}} > Signup in </span> 
-               </Link>
-            
-             </Text>
-           </Box>
-
+          <Box w="80%" m="auto" mt="15px">
+            <Text textAlign={"center"} fontWeight={"600"}>
+              {" "}
+              Already have an account ?
+              <Link to="/login">
+                <span style={{ color: "blue" }}> Signup in </span>
+              </Link>
+            </Text>
+          </Box>
         </Card>
       </Box>
     </Box>
