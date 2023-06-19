@@ -9,7 +9,6 @@ const UserRouter = express.Router();
     UserRouter.get("/signdata", async (req,res) =>{
          const userdata = await Usermodel.find()
          res.send(userdata)
-           
     })
  
     UserRouter.post("/signup",async (req,res) =>{
@@ -39,20 +38,25 @@ const UserRouter = express.Router();
 
 
        UserRouter.post("/login", async (req,res) =>{
-          const {email,password} = req.body;
+          const {email,password,name} = req.body;
 
            try{
               const user = await Usermodel.find({email})
-              // console.log(user)
+           
 
               if(user.length>0){
                 const hasedpassword = user[0].password
-                //  console.log(hasedpassword)
-
+            
+                const userdata = await Usermodel.find()
                  bcrypt.compare(password, hasedpassword, function(err, result) {
                     if(result){
                        const token = jwt.sign({userId:user[0]._id},"hush")
-                      res.send({"msg":"loginSucessfull","token":token})
+                      res.send({"msg":"loginSucessfull","token":token ,
+                       data:{
+                         userEmail:userdata[0].email,
+                         userName:userdata[0].name
+                       }
+                    })
                     }
                     else{
                       res.send({ "msg":"Please check password"})
