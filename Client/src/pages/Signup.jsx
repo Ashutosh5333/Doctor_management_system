@@ -3,8 +3,9 @@ import {
   Box,  Button, Card, FormControl,
   FormLabel,FormErrorMessage, FormHelperText,  Input,Image,  Stack,  Text,  VStack,  useColorModeValue,useToast,
 } from "@chakra-ui/react";
-
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { Signuppost } from "../Redux/AuthReducer/Action";
 
 const Signup = () => {
   const colorScheme = useColorModeValue("blue", "green");
@@ -16,19 +17,15 @@ const Signup = () => {
   const [isName, setisName] = useState(false);
   const [confimPassword, setconfirmPassword] = useState("");
   const [matchpassword, setmatchpassword] = useState(false);
-
   const navigate = useNavigate();
   const toast = useToast();
+  const dispatch = useDispatch()
 
   const [post, SetPost] = useState({
     email: "",
     password: "",
     name: "",
   });
-
-  console.log("post",post)
-
-  console.log("confrim",confimPassword)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,13 +51,23 @@ const Signup = () => {
       });
       }
       else{
-        toast({
-          position: "top",
-          colorScheme: "green",
-          status: "success",
-          title: "user created Account Sucessfully",
-          duration: 3000,
-        });
+         dispatch(Signuppost(post))
+         .then((res) =>{
+          // console.log(res)
+           if(res.type ==="SIGNUPUSERSUCESS" && res.payload.data !== "user is already preasent" ){
+            toast({
+              position: "top",
+              colorScheme: "green",
+              status: "success",
+              title: "user created Account Sucessfully",
+              duration: 3000,
+            });
+            navigate("/login")
+          }
+         }).catch((err) =>{
+          console.log(err)
+         })
+        
       }
       
     } else {

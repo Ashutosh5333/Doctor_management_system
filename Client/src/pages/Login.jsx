@@ -3,11 +3,11 @@ import {
   Box,  Button, Card,CardBody, FormControl,
   FormLabel,FormErrorMessage, FormHelperText,  Input,Image,  Stack,  Text,  VStack,  useColorModeValue,useToast,
 } from "@chakra-ui/react";
-
 import { Link } from "react-router-dom";
-
 import { useNavigate } from "react-router-dom";
 import loginlogo from "../Images/loginlogo.jpg";
+import { useDispatch } from "react-redux";
+import { Loginpost } from "../Redux/AuthReducer/Action";
 
 const Login = () => {
   const colorScheme = useColorModeValue("blue", "green");
@@ -16,6 +16,7 @@ const Login = () => {
   const [isPassword, setisPassword] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
+  const dispatch = useDispatch()
 
   const [post, SetPost] = useState({
     email: "",
@@ -33,13 +34,29 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (post.email !== ""  && post.password !== "") {
-     toast({
-       position: "top",
-       colorScheme: "green",
-       status: "success",
-       title: "user created Account Sucessfully",
-       duration: 3000,
-     })
+      dispatch(Loginpost(post))
+      .then((res) =>{
+        // console.log(res.payload.token)
+         if(res.type === "LOGINUSERSUCESS" && res.payload.msg !== "loginSucessfull"){
+          toast({
+            position: "top",
+            colorScheme: "red",
+            status: "error",
+            title: "Something went wrong",
+          });
+         }
+         else{
+          toast({
+            position: "top",
+            colorScheme: "green",
+            status: "success",
+            title: "Logged In Sucessfully",
+          })
+          localStorage.setItem("usertoken",JSON.stringify(res.payload.token))
+          // navigate("/doctordash")
+         }
+      })
+   
  } 
    if (post.email === "") {
      setisEmail(true);

@@ -55,14 +55,13 @@ export const Loginpost = (payload) => (dispatch) => {
     });
 };
 
-export const Signuppost = (dispatch) => {
-  dispatch(getLogindatareq());
-  return axios
-    .get(`https://doctorappoinment.onrender.com/signup`)
+export const Signuppost =(payload) => (dispatch) => {
+  dispatch(getsignReq);
+  return axios.post(`https://doctorappoinment.onrender.com/signup`,payload)
     .then((r) => {
-      return dispatch(getLogindatasuccess(r.data));
+      return dispatch(getsignSucess(r));
     })
     .catch((err) => {
-      dispatch(geLogindatafailure());
+      dispatch(getsignFail());
     });
 };
