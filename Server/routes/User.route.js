@@ -43,8 +43,12 @@ const UserRouter = express.Router();
 
            try{
               const user = await Usermodel.find({email})
-             const hasedpassword = user[0].password
+              // console.log(user)
+
               if(user.length>0){
+                const hasedpassword = user[0].password
+                //  console.log(hasedpassword)
+
                  bcrypt.compare(password, hasedpassword, function(err, result) {
                     if(result){
                        const token = jwt.sign({userId:user[0]._id},"hush")
@@ -64,6 +68,7 @@ const UserRouter = express.Router();
            }
        })
 
+       
        UserRouter.get("/pro", Authenticate, (req,res) =>{       
               res.send("hello product page")
 

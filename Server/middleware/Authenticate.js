@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { default: mongoose } = require("mongoose");
 
 
 const Authenticate = (req,res,next) =>{
@@ -10,8 +9,8 @@ const Authenticate = (req,res,next) =>{
          if(decoded){
            const userId = decoded.userId
            req.body.userId= userId
-            console.log("decode",decoded)
-            console.log("userId",userId)
+          
+            // console.log("userId",userId)
             next()
          }
          else{

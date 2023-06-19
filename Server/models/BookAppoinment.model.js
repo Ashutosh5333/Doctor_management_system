@@ -1,13 +1,18 @@
 const mongoose = require("mongoose")
 
 const AppoinmentSchema = mongoose.Schema({
-        name:String,
+        pateintname:String,
         email:String,
         Doctor:String,
         Mobile:String,
         Date:String,
-        userId:String
-})
+        userId:String,
+        Status: {type:String ,default:"Registered Succesfully wait for confirmation" },
+        bookedby:{type:mongoose.Types.ObjectId,ref:"user",required:true}
+},{
+        timestamps:true
+}
+)
 
 const  AppointmentModel = mongoose.model(("bookappointment") ,AppoinmentSchema )
 
