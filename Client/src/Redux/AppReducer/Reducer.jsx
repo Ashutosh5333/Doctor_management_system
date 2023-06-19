@@ -31,7 +31,7 @@ export const Reducer = (state = initailState, action) => {
         Doctordata: [],
       };
 
-      case types.GETMYAPPOINMENTSUCESS:
+      case types.GETMYAPPOINTDATASUCESS:
         return {
           ...state,
           isLoading: false,

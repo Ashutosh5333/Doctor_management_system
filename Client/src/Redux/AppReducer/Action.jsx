@@ -62,6 +62,52 @@ const getmyAppoinmentFail = () => {
  }
 }
 
+//  --------------------------- book appoinment  -------------------- //
+
+
+const bookappointReq = () =>{
+  return {
+    type :types.BOOKAPPOINMETREQ
+  }
+}
+
+const bookappointmentFailure = () =>{
+ return {
+   type :types.BOOKAPPOINMETFAILURE
+ }
+}
+
+const bookappointmentsucess = (payload) =>{
+    return {
+       type :types.BOOKAPPOINMETUCESS,
+       payload
+    }
+}
+
+    // --------------------  get My Appoinmnet ------------- //
+
+      
+const getappointReq = () =>{
+  return {
+    type :types.GETMYAPPOINTDATAREQ
+  }
+}
+
+const getappointmentsucess = (payload) =>{
+  return {
+     type :types.GETMYAPPOINTDATASUCESS,
+     payload
+  }
+}
+
+const getappointmentFailure = () =>{
+ return {
+   type :types.GETMYAPPOINTDATAFAILURE
+ }
+}
+
+
+ const token = JSON.parse(localStorage.getItem("usertoken"))
 
 
 
@@ -81,7 +127,8 @@ const getmyAppoinmentFail = () => {
       });
   };
 
-
+  
+   //// ---------------- get doctor data ---------------------- //
 
 export const GetProjectData = (dispatch) => {
   dispatch(getdatareq());
@@ -94,6 +141,8 @@ export const GetProjectData = (dispatch) => {
     });
 };
 
+// --------------------   Single Appoinment data  ----------------------//
+
 
 export const getSingleDoctordetail = (_id) => (dispatch) => {
   dispatch(getsingledoctorReq())
@@ -104,3 +153,46 @@ return    dispatch(getsingledoctorSucess(res.data))
  return    dispatch(getsingledoctorFail())
 })
 }
+
+
+
+// --------------------   Book Appoinment  ----------------------//
+
+
+export const BookAppointment =(payload) =>  (dispatch) =>{
+  dispatch(bookappointReq())
+ return axios.post(`https://doctorappoinment.onrender.com/book/appoinment`, payload,{
+  headers:{
+     "Content-Type":"application/json",
+     "Authorization":`Bearer ${token}`
+   },
+ })
+  .then((r) =>{
+return        dispatch(bookappointmentsucess(r.data))
+  })
+  .catch((err) =>{
+      dispatch(bookappointmentFailure())
+  })
+
+} 
+
+  
+        // --------------------  Get My Appoinmnet ------------------ //
+
+        
+export const getAppointmentdata = (dispatch) =>{
+  dispatch(getappointReq())
+ return axios.get(`https://doctorappoinment.onrender.com/myappoinment`, {
+  headers:{
+     "Content-Type":"application/json",
+     "Authorization":`Bearer ${token}`
+   },
+ })
+  .then((r) =>{
+return        dispatch(getappointmentsucess(r.data))
+  })
+  .catch((err) =>{
+      dispatch(getappointmentFailure())
+  })
+
+} 

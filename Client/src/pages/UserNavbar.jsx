@@ -39,7 +39,7 @@ const { isOpen, onOpen, onClose } = useDisclosure()
 
                <Flex width={{base : "", md  : '25%', lg :'15%'}} justifyContent='space-around' fontSize='25px'>
                <Tooltip bg='#CBD5E0' color='black' label="login" ><Link><Text><BiLogOut/></Text></Link></Tooltip>
-              <Tooltip bg='#CBD5E0' color='black' label="Profile"><Link><Text><FaUserCircle/></Text></Link></Tooltip>
+              <Tooltip bg='#CBD5E0' color='black' label="Profile"><Link to="/userprofile" ><Text><FaUserCircle/></Text></Link></Tooltip>
               </Flex>
               </Flex>
           </Flex> 

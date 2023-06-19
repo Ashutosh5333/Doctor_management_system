@@ -1,28 +1,62 @@
 import React, { useEffect, useState } from 'react'
-import { Avatar, Box,  Image,  useColorModeValue, Text,  HStack,  Tooltip, Flex, Heading, CardBody, useBreakpointValue, Button, WrapItem, Wrap, } from '@chakra-ui/react'
-import { useParams } from 'react-router-dom'
+import { Box,  Image,  useColorModeValue, Text,  Flex, Heading, useBreakpointValue, Button, 
+ useToast, } from '@chakra-ui/react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import {  BsFacebook,  BsTwitter,  BsLinkedin,  BsLink45Deg,  BsBookmarkPlus,} from "react-icons/bs";
-import { getSingleDoctordetail } from '../Redux/AppReducer/Action';
+import { BookAppointment, getSingleDoctordetail } from '../Redux/AppReducer/Action';
 import { Card, Input } from '@chakra-ui/react';
 import UserNavbar from './../pages/UserNavbar';
 
 const SingleDoctor = () => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
   const SmallScreenDoctor = useBreakpointValue({ base: true, md: false, lg: false });
-  
+  const toast = useToast();
     const lightColor = useColorModeValue("#757575", "#9aa0a6");
     const [single ,Setsingle] = useState()
    const dispatch = useDispatch()
      const {id} = useParams()
+     const navigate = useNavigate();
+     const [post, SetPost] = useState({
+      Mobile: "",
+      Doctor: "",
+      Date:"",
+      pateintname:""
+    });
 
-     const handleBookAppoinmet =() =>{
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      SetPost({ ...post, [name]: value });
+    };
+    console.log( "post",post)
 
+    const handleBookAppoinmet =() =>{
+      if (post.Mobile !== "" && post.Doctor !== "" && post.pateintname !== "" && post.Date!=="") {
+    dispatch(BookAppointment(post))
+    .then((res) =>{
+      //  console.log(res)
+       toast({
+        position: "top",
+        colorScheme: "green",
+        status: "success",
+        title: "Appoinment registered Sucessfully",
+      
+      });
+      navigate("/userprofile")
+    })
+     
      }
-      const handleChange = () =>{
-
-      }
+     else{
+      toast({
+        position: "top",
+        colorScheme: "red",
+        status: "error",
+        title: "Fill all the details",
+      });
+     }
+    }
+  
      
        useEffect(() =>{
         dispatch(getSingleDoctordetail(id))
@@ -155,7 +189,8 @@ const SingleDoctor = () => {
                  <Box  display={"flex"} justifyContent="space-around"
                  flexDirection={{base:"column" ,md:"row",lg:"row"}}
                   gap={"10px"}>
-                     <Input placeholder='Patient name *'  background={"#fff"} width="100%" name="name"  onChange={handleChange}/>
+                     <Input placeholder='Patient name *'
+                       background={"#fff"} width="100%" name="pateintname"  onChange={handleChange}/>
                      <Input placeholder='Doctor Name*' background={"#fff"} width="100%" name="Doctor" onChange={handleChange}/>
                  </Box>
 
