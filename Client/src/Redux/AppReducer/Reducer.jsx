@@ -4,6 +4,7 @@ const initailState = {
   isLoading: false,
   isError: false,
   Doctordata: [],
+  myAppoinment:[],
 };
 
 export const Reducer = (state = initailState, action) => {
@@ -29,6 +30,13 @@ export const Reducer = (state = initailState, action) => {
         isLoading: true,
         Doctordata: [],
       };
+
+      case types.GETMYAPPOINMENTSUCESS:
+        return {
+          ...state,
+          isLoading: false,
+          myAppoinment: payload,
+        };
 
     default:
       return state;

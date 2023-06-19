@@ -20,11 +20,11 @@ const UserDashboard = () => {
        
        <Customdashboard inputdoctor={inputdoctor} /> 
 
-
        {
         SmallScreen && 
           <UserbottomNavbar/>
        }
+       
      </Box>
     </>
   )

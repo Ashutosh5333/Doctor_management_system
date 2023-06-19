@@ -24,29 +24,29 @@ const geLoginfailure = () => {
 
 // -------------
 
-const getLogindatareq = () => {
+const getsignReq = () =>{
   return {
-    type: types.LOGINUSERDATAREQ,
-  };
-};
+     type: types.SIGNUPUSERREQ
+  }
+}
 
-const getLogindatasuccess = (payload) => {
+const getsignSucess = (payload) => {
   return {
-    type: types.LOGINUSERDATASUCESS,
-    payload,
-  };
-};
+     type :types.SIGNUPUSERSUCESS,
+     payload,
+  }
+}
 
-const geLogindatafailure = () => {
-  return {
-    type: types.LOGINUSERDATAFAILURE,
-  };
-};
+const getsignFail = () => {
+ return {
+     type :types.SIGNUPUSERFAILURE
+ }
+}
 
-export const GetLogin = (payload) => (dispatch) => {
+export const Loginpost = (payload) => (dispatch) => {
   dispatch(getLoginreq());
   return axios
-    .post(`http://localhost.8000/login`, payload)
+    .post(`https://doctorappoinment.onrender.com/login`, payload)
     .then((r) => {
       return dispatch(getLoginsuccess(r.data));
     })
@@ -55,10 +55,10 @@ export const GetLogin = (payload) => (dispatch) => {
     });
 };
 
-export const GetLogindata = (dispatch) => {
+export const Signuppost = (dispatch) => {
   dispatch(getLogindatareq());
   return axios
-    .get(`http://localhost.8000/logindata`)
+    .get(`https://doctorappoinment.onrender.com/signup`)
     .then((r) => {
       return dispatch(getLogindatasuccess(r.data));
     })

@@ -43,9 +43,49 @@ const getsingledoctorFail = () => {
 }
 
 
+      
+const getmyAppoinmentReq = () =>{
+  return {
+     type: types.GETMYAPPOINMENTREQ
+  }
+} 
+const getmyAppoinmentSucess = (payload) => {
+  return {
+     type :types.GETMYAPPOINMENTSUCESS,
+     payload
+}
+}
+
+const getmyAppoinmentFail = () => {
+ return {
+     type :types.GETMYAPPOINMENTFAILURE
+ }
+}
+
+
+
+
+
+  //  ------------------- My Appoinment req -------------------- //
+
+
+
+  export const GetMyAppoinmentData = (dispatch) => {
+    dispatch(getdatareq());
+    return axios.get(`https://doctorappoinment.onrender.com/doctor`)
+      .then((r) => {
+        return dispatch(getdatasuccess(r.data));
+      })
+      .catch((err) => {
+        dispatch(getdatafailure());
+      });
+  };
+
+
+
 export const GetProjectData = (dispatch) => {
   dispatch(getdatareq());
-  return axios.get(`http://localhost:8000/doctor`)
+  return axios.get(`https://doctorappoinment.onrender.com/doctor`)
     .then((r) => {
       return dispatch(getdatasuccess(r.data));
     })
@@ -57,7 +97,7 @@ export const GetProjectData = (dispatch) => {
 
 export const getSingleDoctordetail = (_id) => (dispatch) => {
   dispatch(getsingledoctorReq())
-return axios.get(`http://localhost:8000/doctor/${_id}`,)
+return axios.get(`https://doctorappoinment.onrender.com/doctor/${_id}`,)
 .then((res)=>{
 return    dispatch(getsingledoctorSucess(res.data))
 }).catch((e)=>{

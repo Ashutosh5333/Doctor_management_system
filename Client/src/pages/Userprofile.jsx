@@ -9,6 +9,9 @@ import { Heading } from '@chakra-ui/react';
 export const Userprofile = () => {
     const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
 
+    
+
+
     return (
       <>
       {
@@ -26,26 +29,22 @@ export const Userprofile = () => {
 
               />
            </Box>
-         
          </Flex>
+         
 
-        <Flex  h="60vh" w="90%"   m="auto" flexDirection={"column"}  >
-        <Box w="90%"    m="auto" textAlign={"center"}>
-                <Text fontWeight={"600"} color="#050452"> Hello </Text>
-               </Box>
+        <Flex  h="60vh" w="95%"   m="auto" flexDirection={"column"}  >
+
                <Box w="90%"   m="auto" mt="5" >
-                <Heading  textAlign={"center"} color="#050452"> Ashutosh lakshakar </Heading>
+                <Heading  textAlign={"center"} fontSize={"1rem"} color="#050452"> Ashutosh lakshakar </Heading>
                </Box>
 
-               <Box w="90%"    m="auto" mt="5">
-                <Text  textAlign={"center"} fontWeight={"400"} letterSpacing={"1px"}>
+               <Box w="100%" borderRadius={"10"} bg="gray.100"  p="2"   m="auto" mt="5">
+                <Text  textAlign={"start"} fontWeight={"400"} letterSpacing={"1px"}>
+                {`Enail - Ashutosh@gmail.com`}
                  </Text>
-               </Box>
-
-               <Box w="90%"     m="auto" mt="5" >
-                <Text  textAlign={"center"} fontWeight={"600"}>{
-                  
-                } </Text>
+                 <Text  textAlign={"start"} fontWeight={"400"} letterSpacing={"1px"} mt="2px">
+                  {`mobile - 95274185288`}
+                 </Text>
                </Box>
 
                <Box w="90%"    m="auto" mt="5" textAlign={"center"}>
