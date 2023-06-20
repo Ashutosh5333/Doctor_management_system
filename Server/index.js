@@ -5,6 +5,7 @@ const { DoctorRouter } = require("./routes/Docter.route");
 const { Authenticate } = require("./middleware/Authenticate");
 const cors = require("cors");
 const { AppointmentRouter } = require("./routes/BookAppoinment");
+const { AdminRouter } = require("./routes/AdminRoute");
 
 const app = express();
 app.use(express.json());
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
   res.send("Welcome home ");
 });
 
+app.use(AdminRouter)
 app.use(UserRouter);
 app.use(DoctorRouter);
 // app.use(Authenticate);
