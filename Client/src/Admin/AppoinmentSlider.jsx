@@ -172,6 +172,114 @@ const AppoinmentSlider = () => {
 
       {/* ------------------  ---------------- */}
 
+       
+      {SmallScreen && (
+        <Swiper
+          swipeable={true}
+          draggable={true}
+          responsive={responsive}
+          slidesPerView={3}
+          spaceBetween={10}
+          pagination={{
+            clickable: true,
+          }}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="6px solid skyblue"
+              w={{ base: "100%" }}
+              h="100px"
+              ml={{ base: "15px" }}
+              mb={"5"}
+            >
+              <Text pl={"10px"} align={{ base: "start" }} fontSize=".8rem">
+                Total Appointment
+              </Text>
+              <Text
+                pl={"10px"}
+                align={{ base: "start" }}
+                fontWeight="600"
+                fontSize="30px"
+                mt="2"
+              >
+                {TProject}{" "}
+              </Text>
+            </Card>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="6px solid skyblue"
+              w={{ base: "100%" }}
+              h="100px"
+              ml="15px"
+            >
+              <Text pl={"10px"} align={{ base: "start" }}>
+              NewAppointment
+              </Text>
+              <Text
+                pl={"10px"}
+                fontWeight="600"
+                align={{ base: "start" }}
+                fontSize="30px"
+              >
+                {" "}
+                {NewAppointment}{" "}
+              </Text>
+            </Card>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="6px solid skyblue"
+              w={{ base: "100%" }}
+              h="100px"
+              ml="15px"
+            >
+              <Text pl={"10px"} align={{ base: "start" }}>
+                Approved
+              </Text>
+              <Text
+                pl={"10px"}
+                align={{ base: "start" }}
+                fontWeight="600"
+                fontSize="30px"
+              >
+                {Approved}
+              </Text>
+            </Card>
+          </SwiperSlide>
+
+       
+          <SwiperSlide>
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="6px solid skyblue"
+              w={{ base: "100%" }}
+              h="100px"
+              ml="15px"
+            >
+              <Text pl={"10px"} align={{ base: "start" }}>
+                 Waiting
+              </Text>
+              <Text
+                pl={"10px"}
+                align={{ base: "start" }}
+                fontWeight="600"
+                fontSize="30px"
+              >
+                {" "}
+                {waiting}{" "}
+              </Text>
+            </Card>
+          </SwiperSlide>
+        </Swiper>
+      )}
+
     
     </>
   );

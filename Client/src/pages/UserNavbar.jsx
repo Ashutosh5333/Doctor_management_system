@@ -7,7 +7,7 @@ import {FaUserCircle} from "react-icons/fa"
 import {BsSearch} from "react-icons/bs"
 import {BiLogIn,BiLogOut} from "react-icons/bi"
 import {RiAdminFill} from "react-icons/ri"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { handleLogOut } from './../Redux/AuthReducer/Action';
 
 
@@ -15,11 +15,13 @@ const UserNavbar = ({SetInputDoctor}) => {
 const { isOpen, onOpen, onClose } = useDisclosure()
  const dispatch =useDispatch()
     const btnRef = React.useRef()
+    const isAuth = useSelector(store =>store.AuthReducer.isAuth)
       
      const handleLog = () =>{
       dispatch(handleLogOut())
       localStorage.clear()
      }
+     
 
   return (
     <>
@@ -47,7 +49,7 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                </Flex>
 
                <Flex width={{base : "", md  : '25%', lg :'15%'}} justifyContent='space-around' fontSize='25px'>
-               <Tooltip bg='#CBD5E0' color='black' label="logout" ><Link><Text onClick={handleLog}><BiLogOut/></Text></Link></Tooltip>
+               <Tooltip bg='#CBD5E0' color='black' label={isAuth ? "Logut" : "Login" } ><Link><Text onClick={handleLog}><BiLogOut/></Text></Link></Tooltip>
                <Tooltip bg='#CBD5E0' color='black' label="admin"><Link to="/admin" ><Text><RiAdminFill/></Text></Link></Tooltip>
               <Tooltip bg='#CBD5E0' color='black' label="Profile"><Link to="/userprofile" ><Text><FaUserCircle/></Text></Link></Tooltip>
               </Flex>

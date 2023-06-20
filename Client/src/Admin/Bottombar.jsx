@@ -29,17 +29,18 @@ const Bottombar = () => {
       mb="1"
       p="5"
     >
-      <Link to="/dash">
+      <Link to="/admin">
         <Box p="2" m="auto">
-        { path ==="/dash" ?  <Image src={Dashboardactive} w="80%" />: <Image src={DashboardL} w="30%" /> }
+        { path ==="/admin" ?  <Image src={Dashboardactive} w="80%" />: <Image src={DashboardL} w="30%" /> }
         </Box>
       </Link>
 
 
-      <Link to="/projectlist">
+      <Link to="/admin/appoinmentlist">
         <Box p="2" m="auto">
-        {path ==="/projectlist" ?  <Image src={Projectlistactive}  /> : <Image src={Projectlist} w="30%" />}
+        {path ==="/admin/appoinmentlist" ?  <Image src={Projectlistactive}  /> : <Image src={Projectlist} w="30%" />}
         </Box>
+        
       </Link>
     </Box>
   );

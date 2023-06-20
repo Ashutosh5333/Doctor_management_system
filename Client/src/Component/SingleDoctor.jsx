@@ -55,7 +55,7 @@ const SingleDoctor = () => {
     ) {
       dispatch(BookAppointment(post)).then((res) => {
         if (
-          res.type === "BOOKAPPOINMETUCESS" &&
+          res.type == "BOOKAPPOINMETUCESS" &&
           res.payload.msg === "Appoinment booked Succesfully"
         ) {
           toast({

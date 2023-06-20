@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
 import AppoinmentSlider from './AppoinmentSlider'
+import Bottombar from './Bottombar'
 
 const Dashboard = () => {
 
@@ -12,7 +13,9 @@ const Dashboard = () => {
          <AppoinmentSlider/>
        </Box>
 
- 
+       <Box>
+        <Bottombar/>
+       </Box>
 
      </Box>
     </>

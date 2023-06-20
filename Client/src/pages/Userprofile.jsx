@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useBreakpointValue, Text, Flex, Button, Box } from "@chakra-ui/react";
+import { useBreakpointValue, Text, Flex, Button, Box, useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 import UserbottomNavbar from "../Component/UserbottomNavbar";
@@ -16,12 +16,18 @@ export const Userprofile = () => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
   const dispatch = useDispatch();
   const Myappoinmnet = useSelector((store) => store.AppReducer.myAppoinment);
-
+  const toast = useToast();
   const loggeddata = JSON.parse(localStorage.getItem("loggeduser"))
 
    const cancelAppoinmnet = (_id) =>{
     dispatch(CancelAppointment(_id))
     .then((res) =>{
+      toast({
+        position: "top",
+        colorScheme: "green",
+        status: "success",
+        title: "Appoinment Cancel Sucessfully",
+      });
       dispatch(getAppointmentdata);
     })
 

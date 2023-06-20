@@ -340,23 +340,24 @@ const AppoinmentListCard = () => {
                     </Flex>
                     
 
-                    <Flex justifyContent={"space-evenly"} p="5" gap="5">
-                    <Box>
+                    <Flex textAlign={"start"}  p="5" gap="5">
+                    <Box align={"start"}>
                         <Text
                           fontSize={"1.3rem"}
                           color="#070b40"
                           fontWeight={"600"}
+                          textAlign={"start"}
                         >
-                          {" "}
-                          {el.Status}{" "}
+
+                          {`Status  :- ${el.Status}` }
                         </Text>
                       </Box>
                     </Flex>
 
 
-                    <Flex justifyContent={"space-evenly"} p="5" gap="5">
-                      <Button bg="green.300" color="#fff" > Approved Appoinment </Button>
-                      <Button bg="red.300" color="#fff"> Cancel Appoinment </Button>
+                    <Flex justifyContent={"space-between"} p="2" gap="5">
+                      <Button onClick={()=>handleApproved(el._id)} bg="green.300" color="#fff" > Approved </Button>
+                      <Button onClick={()=>handlecancelled(el._id)} bg="red.300" color="#fff"> Cancel </Button>
                     </Flex>
                   </Card>
                 );
@@ -382,12 +383,7 @@ const AppoinmentListCard = () => {
           mb={{ base: "10px", lg: "10px" }}
           justifyContent={"center"}
         >
-          {/* <Pagination
-            total={5}
-            handlenext={handlenext}
-            handleprev={handleprev}
-            current={current}
-          /> */}
+          
         </Box>
       </Box>
     </>
