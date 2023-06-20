@@ -1,15 +1,21 @@
 import { Box, Image } from "@chakra-ui/react";
 import React from "react";
 import DashboardL from "../Images/DashboardL.jpg";
-import createproject from "../Images/createproject.jpg";
 import Projectlist from "../Images/Projectlist.jpg";
 import  Dashboardactive from "../Images/Dashboardactive.png";
-import createprojectactive from "../Images/createprojectactive.png";
 import Projectlistactive from "../Images/Projectlistactive.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BiLogOut } from 'react-icons/bi';
+
+
 
 const Bottombar = () => {
+  const navigate = useNavigate()
 
+   const handlelogout = () =>{
+      localStorage.clear()
+      navigate("/adminlogin")
+   }
   
   const path=window.location.pathname;
   return (
@@ -35,6 +41,10 @@ const Bottombar = () => {
         </Box>
       </Link>
 
+      <Box p="2" m="auto">
+          <BiLogOut fontSize={"1.5rem"} onClick={handlelogout}/>
+      </Box>
+        
 
       <Link to="/admin/appoinmentlist">
         <Box p="2" m="auto">
@@ -43,7 +53,7 @@ const Bottombar = () => {
         
       </Link>
     </Box>
-  );
+  )
 };
 
 export default Bottombar;

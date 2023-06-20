@@ -62,12 +62,13 @@ const AppoinmentSlider = () => {
           display={"flex"}
           flexDirection={"column"}
         >
-          <Flex w="70vw" m="auto" mt="10" gap="5">
+          <Flex  w="80vw" m="auto"  mt="-5"  gap="5">
+
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
               w={{ md: "100%", lg: "100%" }}
-              h="150px"
+              h="120px"
             >
               <Text
                 pl={{ lg: "10px" }}
@@ -92,7 +93,7 @@ const AppoinmentSlider = () => {
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
               w={{ md: "100%", lg: "100%" }}
-              h="150px"
+              h="120px"
             >
               <Text
                 pl={{ lg: "10px" }}
@@ -112,14 +113,12 @@ const AppoinmentSlider = () => {
                 {NewAppointment}{" "}
               </Text>
             </Card>
-          </Flex>
 
-          <Flex w="70vw" m="auto" mt="10" gap="5">
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
               w={{ md: "100%", lg: "100%" }}
-              h="150px"
+              h="120px"
             >
               <Text
                 pl={{ lg: "10px" }}
@@ -144,7 +143,7 @@ const AppoinmentSlider = () => {
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
               w={{ md: "100%", lg: "100%" }}
-              h="150px"
+              h="120px"
             >
               <Text
                 pl={{ lg: "10px" }}
@@ -165,6 +164,7 @@ const AppoinmentSlider = () => {
               </Text>
             </Card>
           </Flex>
+
 
           {/* --------------- */}
         </Box>
@@ -188,11 +188,10 @@ const AppoinmentSlider = () => {
           <SwiperSlide>
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
-              borderLeft="6px solid skyblue"
+              borderLeft="10px solid blue"
               w={{ base: "100%" }}
-              h="100px"
-              ml={{ base: "15px" }}
-              mb={"5"}
+              h="120px"
+               mt="10px"
             >
               <Text pl={"10px"} align={{ base: "start" }} fontSize=".8rem">
                 Total Appointment
@@ -212,13 +211,13 @@ const AppoinmentSlider = () => {
           <SwiperSlide>
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
-              borderLeft="6px solid skyblue"
-              w={{ base: "100%" }}
-              h="100px"
-              ml="15px"
+              borderLeft="10px solid blue"
+              w={{ base: "200px" }}
+              h="120px"
+              mt="10px"
             >
               <Text pl={"10px"} align={{ base: "start" }}>
-              NewAppointment
+              Appointment
               </Text>
               <Text
                 pl={"10px"}
@@ -235,10 +234,10 @@ const AppoinmentSlider = () => {
           <SwiperSlide>
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
-              borderLeft="6px solid skyblue"
-              w={{ base: "100%" }}
-              h="100px"
-              ml="15px"
+              borderLeft="10px solid blue"
+              w={{ base: "200px" }}
+              h="120px"
+              mt="10px"
             >
               <Text pl={"10px"} align={{ base: "start" }}>
                 Approved
@@ -258,10 +257,10 @@ const AppoinmentSlider = () => {
           <SwiperSlide>
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
-              borderLeft="6px solid skyblue"
-              w={{ base: "100%" }}
-              h="100px"
-              ml="15px"
+              borderLeft="10px solid blue"
+              w={{ base: "200px" }}
+              h="120px"
+              mt="10px"
             >
               <Text pl={"10px"} align={{ base: "start" }}>
                  Waiting
