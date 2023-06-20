@@ -14,6 +14,7 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const AdminLogin = () => {
     const navigate = useNavigate();
@@ -75,7 +76,7 @@ const AdminLogin = () => {
   return (
     <>
      <Box>
-   
+      <Navbar/>
 
           <Box width={"100%"} position={"relative"}  m="auto">
             <Card

@@ -9,6 +9,7 @@ import UserDashboard from '../Component/UserDashboard'
 import SingleDoctor from '../Component/SingleDoctor'
 import { Userprofile } from '../pages/Userprofile'
 import SmallSearchbar from '../pages/SmallSearchbar'
+import AppoinmnetList from '../Admin/AppoinmnetList'
 
 
 const MainRoutes = () => {
@@ -26,6 +27,7 @@ const MainRoutes = () => {
      <Route  path='/mobilesearchbar' element={<SmallSearchbar/>} />
      <Route  path='/admin' element={<Admin/>} />
      <Route  path='/adminlogin' element={<AdminLogin/>} />
+     <Route  path='/admin/appoinmentlist' element={<AppoinmnetList/>} />
 
     </Routes>
   )

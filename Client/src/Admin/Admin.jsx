@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
 import { Box } from "@chakra-ui/react";
-import Navbar from "../Component/Navbar";
+import Navbar from "./Navbar";
 
 
 const Admin = () => {
