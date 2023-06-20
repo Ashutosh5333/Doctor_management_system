@@ -4,17 +4,28 @@ const { Authenticate } = require("../middleware/Authenticate");
 const AppointmentRouter = express.Router();
 
 
-AppointmentRouter.get("/allappoinment", async (req, res) => {
-  try {
-    const Appoinmentdata = await AppointmentModel.find().populate("bookedby", [
-      "name",
-      "email",
-    ]);
-    res.send(Appoinmentdata);
-  } catch (err) {
-    console.log(err);
-  }
-});
+
+
+
+AppointmentRouter.get("/allappoinment",async (req,res) =>{
+  let {  sortBy } = req.query;
+    try{
+      const page =parseInt(req.query.page) || 1
+      const limit = parseInt(req.query.limit) || 10;
+      const skip = (page-1) * limit ;
+     
+      if (sortBy) {
+        let sort = await AppointmentModel.find().sort({ [sortBy]: 1 }).skip(skip).limit(limit);
+        return res.send(sort)
+      }
+      else{
+       const newdata = await AppointmentModel.find().skip(skip).limit(limit);
+       res.json(newdata)
+      }
+    }catch(err){
+      console.log(err)
+    }
+})
 
 
 AppointmentRouter.get("/myappoinment",Authenticate, async (req, res) => {
@@ -116,7 +127,7 @@ try {
  // ------------------- 
 
 
- AppointmentRouter.get("/countAppointment",async(req,res)=>{ 
+  AppointmentRouter.get("/countAppointment",async(req,res)=>{ 
   try{
      const data ={}
      data.totalAppiontment=await AppointmentModel.countDocuments();
@@ -128,14 +139,14 @@ try {
   }catch(err){
     res.send({msg:"Erroe in getting data"})
   }
-})
+  })
 
 
       //  ------------- chart data ---------------- 
 
       AppointmentRouter.get("/chartdata",async(req,res)=>{ 
     try{
-       const Closed = await AppointmentModel.aggregate([{$match:{Status:"Approved"}},
+      const Closed = await AppointmentModel.aggregate([{$match:{Status:"Approved"}},
        {$group: {_id:"$Doctor",Closedcount:{$sum:1}}},
        {$sort:{_id:1}}
       ])
