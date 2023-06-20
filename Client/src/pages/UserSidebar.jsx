@@ -12,10 +12,14 @@ import { AiFillHome } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const UserSidebar = () => {
+
+  const loggeddata = JSON.parse(localStorage.getItem("loggeduser"))
+
+
   return (
     <Box p={1} display="flex" gap={2}>
       <Box gap="8px">
-      <Heading size="md"  textAlign={"center"} fontWeight="bold" mb="2">User Profile</Heading>
+      <Heading size="md" mt="5" color="#050452" textAlign={"center"} fontWeight="bold" mb="2">User Profile</Heading>
       <Divider mb="2" />
         <Box p={2} display={"flex"} gap="8px" justifyContent={"space-between"}>
           <Box fontSize={"2.2em"} m="auto">
@@ -36,10 +40,17 @@ const UserSidebar = () => {
 
         <Box p={5} textAlign={"center"} mt="10">
         
-          <Text fontSize={".8rem"} textAlign={"start"} fontWeight={"600"}>
-             {`Name : - Ashutosh lakshkar` }
+          <Text fontSize={".8rem"} color="#050452" textAlign={"start"} fontWeight={"600"}>
+             {`Name : - ${loggeddata?.userName} ` }
           </Text>
         </Box>
+
+        <Box p={5} textAlign={"center"} mt="3">
+        
+        <Text fontSize={".8rem"} color="#050452" textAlign={"start"} fontWeight={"600"}>
+           {`Email : - ${loggeddata?.userEmail} ` }
+        </Text>
+      </Box>
 
 
       

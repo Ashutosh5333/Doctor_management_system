@@ -36,7 +36,7 @@ const Login = () => {
     if (post.email !== ""  && post.password !== "") {
       dispatch(Loginpost(post))
       .then((res) =>{
-       
+        // console.log(res)
          if(res.type === "LOGINUSERSUCESS" && res.payload.msg !== "loginSucessfull"){
           toast({
             position: "top",
@@ -53,7 +53,9 @@ const Login = () => {
             title: "Logged In Sucessfully",
           })
           localStorage.setItem("usertoken",JSON.stringify(res.payload.token))
+          localStorage.setItem("loggeduser", JSON.stringify(res.payload.data))
           navigate("/doctordash")
+          
          }
       })
    

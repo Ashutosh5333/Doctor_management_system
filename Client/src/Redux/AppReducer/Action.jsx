@@ -106,6 +106,33 @@ const getappointmentFailure = () =>{
  }
 }
 
+      
+
+//  -----------------  Appoinmnet cancel ------------------ //
+
+
+const CncelappointReq = () =>{
+  return {
+    type :types.CANCELAPPOINMETREQ
+  }
+}
+
+const Cncelappointmentsucess = (payload) =>{
+  return {
+     type :types.CANCELAPPOINMETUCESS,
+     payload
+  }
+}
+
+const CncelappointmentFailure = () =>{
+ return {
+   type :types.CANCELAPPOINMETFAILURE
+ }
+}
+
+
+//  -----------------  Appoinmnet cancel ------------------ //
+
 
  const token = JSON.parse(localStorage.getItem("usertoken"))
 
@@ -196,3 +223,26 @@ return        dispatch(getappointmentsucess(r.data))
   })
 
 } 
+
+
+
+
+        // --------------------  Get My Appoinmnet ------------------ //
+
+        
+        export const CancelAppointment =(_id) => (dispatch) =>{
+          dispatch(CncelappointReq())
+         return axios.delete(`https://doctorappoinment.onrender.com/appoinment/delete/${_id}`, {
+          headers:{
+             "Content-Type":"application/json",
+             "Authorization":`Bearer ${token}`
+           },
+         })
+          .then((r) =>{
+        return        dispatch(Cncelappointmentsucess(r))
+          })
+          .catch((err) =>{
+              dispatch(CncelappointmentFailure())
+          })
+        
+        } 

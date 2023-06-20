@@ -37,8 +37,8 @@ const UserbottomNavbar = () => {
          borderRadius={"10px"} p="2"
           justifyContent="space-around" bg="skyblue"
         >
-        <Text color="#fff" mt="3"><BiHomeAlt/> </Text> 
-        <Text color="#fff" mt="2"> Home </Text> 
+        <Text color="#fff" mt="2"><BiHomeAlt/> </Text> 
+        <Text color="#fff" mt="1"> Home </Text> 
         </Flex>:
           <Flex  w="20vw" h="5vh" m="auto"
           justifyContent="space-around"
@@ -56,8 +56,8 @@ const UserbottomNavbar = () => {
            justifyContent="space-around" mt="1" bg="skyblue"
            borderRadius={"10px"} p="2"
         >
-        <Text color="#fff" mt="3"><BsSearch/> </Text> 
-        <Text color="#fff" mt="2"> Search </Text> 
+        <Text color="#fff" mt="2"><BsSearch/> </Text> 
+        <Text color="#fff" mt="1"> Search </Text> 
       
         </Flex>: <Flex  w="20vw" h="5vh" m="auto"
             justifyContent="space-around"
@@ -78,8 +78,8 @@ const UserbottomNavbar = () => {
            justifyContent="space-around"  bg="skyblue"
            borderRadius={"10px"} p="2"
         >
-        <Text color="#fff" mt="3"><FaUserCircle/> </Text> 
-        <Text color="#fff" mt="2"> Profile </Text> 
+        <Text color="#fff" mt="2"><FaUserCircle/> </Text> 
+        <Text color="#fff" mt="1"> Profile </Text> 
         </Flex> : <Flex w="20vw" h="5vh" m="auto"
            justifyContent="space-around"
         >

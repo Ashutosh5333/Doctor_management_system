@@ -1,6 +1,6 @@
 import { Box, Divider } from '@chakra-ui/react'
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AiOutlineDashboard} from "react-icons/ai"
 import {BsListUl} from "react-icons/bs"
 
@@ -9,8 +9,10 @@ import { BiLogOut } from 'react-icons/bi';
 
 
 const Sidebar = () => {
+  const navigate = useNavigate()
   const handlelogout = () =>{
     localStorage.clear()
+    navigate("/adminlogin")
   }
 
 

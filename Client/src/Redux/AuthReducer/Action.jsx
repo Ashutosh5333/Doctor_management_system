@@ -91,6 +91,9 @@ export const Signuppost =(payload) => (dispatch) => {
     });
 };
 
+  export const handleLogOut = () => (dispatch) =>{
+     dispatch({type:types.LOGOUT_SUCCESS})
+  }
 
     // --------------- Admin Logged ---------------
 

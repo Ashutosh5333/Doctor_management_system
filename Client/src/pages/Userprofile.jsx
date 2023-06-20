@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useBreakpointValue, Text, Flex, Button, Box } from "@chakra-ui/react";
 import axios from "axios";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
 
 import UserbottomNavbar from "../Component/UserbottomNavbar";
 import { Image } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAppointmentdata } from "../Redux/AppReducer/Action";
+import { CancelAppointment, getAppointmentdata } from "../Redux/AppReducer/Action";
 import UserNavbar from "./UserNavbar";
 import UserSidebar from "./UserSidebar";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { ProjectSkelton } from "./../Admin/ProjectSkelton";
 
 export const Userprofile = () => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
   const dispatch = useDispatch();
   const Myappoinmnet = useSelector((store) => store.AppReducer.myAppoinment);
-  
 
+  const loggeddata = JSON.parse(localStorage.getItem("loggeduser"))
+
+   const cancelAppoinmnet = (_id) =>{
+    dispatch(CancelAppointment(_id))
+    .then((res) =>{
+      dispatch(getAppointmentdata);
+    })
+
+   }
 
   useEffect(() => {
     dispatch(getAppointmentdata);
@@ -48,110 +48,131 @@ export const Userprofile = () => {
             <UserSidebar />
           </Flex>
 
-          <Flex  w="80%" flexDirection={"column"}>
+          <Flex w="80%" flexDirection={"column"}>
             <Box>
-              <Heading textAlign={"center"}> Your Appoinment Details </Heading>
+              <Heading textAlign={"center"} mt="5" color="#050452"> Your Appoinment Details </Heading>
             </Box>
-          {
-            Myappoinmnet.length >0 && Myappoinmnet.map((el) =>{
-               return  <Box
-              borderRadius={"10"}
-              boxShadow={"dark-lg"}
-              h="50vh"
-              w="90%"
-              m="auto"
-              mt="5"
-              p="5"
-            >
-              <Flex border="1px solid gray" h="7vh" gap="2" mt="5">
-                <Flex
-                  border="1px solid gray"
-                  justifyContent={"space-around"}
-                  w="50%"
-                  p="2"
-                >
-                  <Text textAlign={"start"} fontWeight={"600"}> Appoinment Number </Text>
-                  <Text> 459217 </Text>
-                </Flex>
+            {Myappoinmnet.length > 0 ? (
+              Myappoinmnet.length > 0 &&
+              Myappoinmnet.map((el) => {
+                return (
+                  <Box
+                    borderRadius={"10"}
+                    boxShadow={"dark-lg"}
+                    h="60vh"
+                    w="90%"
+                    m="auto"
+                    mt="5"
+                    p="5"
+                  >
+                    <Flex h="7vh" gap="2" mt="5">
+                      <Flex
+                        border="1px solid gray"
+                        justifyContent={"space-around"}
+                        w="50%"
+                        p="2"
+                      >
+                        <Text textAlign={"start"} fontWeight={"600"}>
+                          {" "}
+                          Appointment Number{" "}
+                        </Text>
+                        <Text> 459217 </Text>
+                      </Flex>
 
-                <Flex
-                  border="1px solid gray"
-                  justifyContent={"space-around"}
-                  w="50%"
-                  p="2"
-                >
-                  <Text textAlign={"start"} fontWeight={"600"}>Patient Name</Text>
-                  <Text>{el.pateintname} </Text>
-                </Flex>
-              </Flex>
+                      <Flex
+                        border="1px solid gray"
+                        justifyContent={"space-around"}
+                        w="50%"
+                        p="2"
+                      >
+                        <Text textAlign={"start"} fontWeight={"600"}>
+                          Patient Name
+                        </Text>
+                        <Text>{el.pateintname} </Text>
+                      </Flex>
+                    </Flex>
 
-              <Flex border="1px solid gray" h="7vh" gap="2" mt="5">
-                <Flex
-                  border="1px solid gray"
-                  justifyContent={"space-around"}
-                  w="50%"
-                  p="2"
-                >
-                  <Text textAlign={"start"} fontWeight={"600"}> Mobile Number </Text>
-                  <Text>{el.Mobile} </Text>
-                </Flex>
+                    <Flex h="7vh" gap="2" mt="5">
+                      <Flex
+                        border="1px solid gray"
+                        justifyContent={"space-around"}
+                        w="50%"
+                        p="2"
+                      >
+                        <Text textAlign={"start"} fontWeight={"600"}>
+                          {" "}
+                          Mobile Number{" "}
+                        </Text>
+                        <Text>{el.Mobile} </Text>
+                      </Flex>
 
-                <Flex
-                  border="1px solid gray"
-                  justifyContent={"space-around"}
-                  w="50%"
-                  p="2"
-                >
-                  <Text textAlign={"start"} fontWeight={"600"}>Appoinmnet Date </Text>
-                  <Text> {el.Date}</Text>
-                </Flex>
-              </Flex>
+                      <Flex
+                        border="1px solid gray"
+                        justifyContent={"space-around"}
+                        w="50%"
+                        p="2"
+                        fontSize={{md:".9rem",lg:"1.1rem"}}
+                      >
+                        <Text textAlign={"start"} fontWeight={"600"}>
+                          Appointment Date{" "}
+                        </Text>
+                        <Text>  {new Date(el.createdAt).toDateString()}</Text>
+                      </Flex>
+                    </Flex>
 
-              <Flex border="1px solid gray" h="7vh" gap="2" mt="5">
-                <Flex
-                  border="1px solid gray"
-                  justifyContent={"space-around"}
-                  w="50%"
-                  p="2"
-                >
-                  <Text textAlign={"start"} fontWeight={"600"}> Apply Date </Text>
-                  <Text> {new Date(el.createdAt).toDateString()}   </Text>
-                </Flex>
-                <Flex
-                  justifyContent={"space-around"}
-                  w="50%" p="2"
-                >
-                  <Text textAlign={"start"} fontWeight={"600"}> Cancel </Text>
-                   <Box bg="red" borderRadius={"10"} color="#fff" h="5vh" p="1" >
-                    Cancellation
-                   </Box>
-                </Flex>
+                    <Flex  h="7vh" gap="2" mt="5">
+                      <Flex
+                        border="1px solid gray"
+                        justifyContent={"space-around"}
+                        w="50%"
+                        p="2"
+                      >
+                        <Text textAlign={"start"} fontWeight={"600"}>
+                          {" "}
+                          Apply Date{" "}
+                        </Text>
+                        {/* <Text>  */}
+                        <Text> {el.Date}</Text>
+                   
+                      </Flex>
+                    </Flex>
 
+                    <Flex h="8vh" gap="2" mt="5">
+                      <Flex
+                        justifyContent={"space-around"}
+                        w="100%"
+                        p="2"
+                        textAlign={"start"}
+                      >
+                        <Text textAlign={"start"} fontWeight={"600"}>
+                          Appoinment Status
+                        </Text>
+                        <Text>{el.Status} </Text>
+                      </Flex>
+                    </Flex>
 
-              </Flex>
-
-              <Flex border="1px solid gray" h="8vh" gap="2" mt="5">
-
-                <Flex
-                  justifyContent={"space-around"}
-                  w="100%"
-                  p="2"
-                  textAlign={"start"}
-                >
-                   <Text textAlign={"start"} fontWeight={"600"}>Appoinment Status</Text>
-                  <Text>{el.Status} </Text>
-                </Flex>
-
-               
-              </Flex>
-
-
-            </Box>
-            })
-
-          }
-           
-
+                    <Flex h="8vh" gap="2" mt="5">
+                      <Flex
+                        justifyContent={"space-around"}
+                        w="100%"
+                        p="2"
+                        textAlign={"start"}
+                      >
+                        <Text textAlign={"start"} fontWeight={"600"}>
+                          Cancel Appoinment{" "}
+                        </Text>
+                        <Button onClick={() =>cancelAppoinmnet(el._id)} bg="red.300" color="#fff">
+                          {" "}
+                          Cancel{" "}
+                        </Button>
+                      </Flex>
+                    </Flex>
+                  </Box>
+                );
+              })
+            ) : (
+              <ProjectSkelton />
+            )}
           </Flex>
         </Flex>
       )}
@@ -183,7 +204,7 @@ export const Userprofile = () => {
               <Box w="90%" m="auto" mt="5">
                 <Heading textAlign={"center"} fontSize={"1rem"} color="#050452">
                   {" "}
-                  Ashutosh lakshakar{" "}
+                {loggeddata?.userName}
                 </Heading>
               </Box>
 
@@ -200,7 +221,7 @@ export const Userprofile = () => {
                   fontWeight={"400"}
                   letterSpacing={"1px"}
                 >
-                  {`Enail - Ashutosh@gmail.com`}
+                  {`Email - ${loggeddata?.userEmail}`}
                 </Text>
                 <Text
                   textAlign={"start"}
@@ -208,40 +229,66 @@ export const Userprofile = () => {
                   letterSpacing={"1px"}
                   mt="2px"
                 >
-                  {`mobile - 95274185288`}
+                
                 </Text>
               </Box>
-
-
-
-
             </Flex>
 
-           {/* ----------------------------- */}
+            {/* ----------------------------- */}
 
-           <Flex h="60vh" w="95%" m="auto" flexDirection={"column"}>
-              {
-                Myappoinmnet.length >0 && Myappoinmnet.map((el) =>{
-                   return   <Box
-                w="100%"
-                borderRadius={"10"}
-                bg="gray.100"
-                p="5"
-                m="auto"
-                mt="5"
-              >
-               <Text mt="3" fontWeight={"600"} >  <span style={{fontSize:"1rem", fontWeight:"400"}}>Appoinment Date : </span> {new Date(el.createdAt).toDateString()} </Text>
-               <Text mt="2" fontWeight={"600"}>  <span style={{fontSize:"1rem", fontWeight:"400"}}>Patient  Name : </span>{el.pateintname}  </Text>
+            <Flex h="60vh" w="95%" m="auto" flexDirection={"column"}>
+              {Myappoinmnet.length > 0 &&
+                Myappoinmnet.map((el) => {
+                  return (
+                    <Box
+                      w="100%"
+                      borderRadius={"10"}
+                      bg="gray.100"
+                      p="5"
+                      m="auto"
+                      mt="5"
+                    >
+                    <Text mt="3" fontWeight={"600"}>
+                        {" "}
+                        <span style={{ fontSize: "1rem", fontWeight: "400" }}>
+                          Apply Date :{" "}
+                        </span>{" "}
+                        {new Date(el.createdAt).toDateString()}{" "}
 
-               <Text mt="2" fontWeight={"600"}>  <span style={{fontSize:"1rem", fontWeight:"400"}}>Mobile Number : </span>{ el.Mobile}  </Text>
-               <Text mt="2" fontWeight={"600"}>  <span style={{fontSize:"1rem", fontWeight:"400"}}>Status : </span>{el.Status}  </Text>
-              
-              </Box>
-                })
+                      </Text>
+                      <Text mt="3" fontWeight={"600"}>
+                        {" "}
+                        <span style={{ fontSize: "1rem", fontWeight: "400" }}>
+                          Appoinment Date :{" "}
+                        </span>{" "}
+                        {/* {new Date(el.createdAt).toDateString()}{" "} */}
+                         {el.Date}
+                      </Text>
+                      <Text mt="2" fontWeight={"600"}>
+                        {" "}
+                        <span style={{ fontSize: "1rem", fontWeight: "400" }}>
+                          Patient Name :{" "}
+                        </span>
+                        {el.pateintname}{" "}
+                      </Text>
 
-              }
-            
-              
+                      <Text mt="2" fontWeight={"600"}>
+                        {" "}
+                        <span style={{ fontSize: "1rem", fontWeight: "400" }}>
+                          Mobile Number :{" "}
+                        </span>
+                        {el.Mobile}{" "}
+                      </Text>
+                      <Text mt="2" fontWeight={"600"}>
+                        {" "}
+                        <span style={{ fontSize: "1rem", fontWeight: "400" }}>
+                          Status :{" "}
+                        </span>
+                        {el.Status}{" "}
+                      </Text>
+                    </Box>
+                  );
+                })}
             </Flex>
 
             <Box w="90%" m="auto" mt="5" textAlign={"center"}>
@@ -251,8 +298,7 @@ export const Userprofile = () => {
                   Back To Doctor dashboard{" "}
                 </Button>
               </Link>
-              </Box>
-
+            </Box>
           </Flex>
         </Box>
       )}

@@ -10,13 +10,20 @@ import {
   DrawerBody,  DrawerHeader,  DrawerOverlay,  DrawerContent,  DrawerCloseButton,} from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import {Link} from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { handleLogOut } from './../Redux/AuthReducer/Action';
 
 const Customdashboard = ({inputdoctor}) => {
+   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure();   
 
-  const handleLogout = () =>{
+  const handleLog = () =>{
+    dispatch(handleLogOut)
     localStorage.clear()
   }
+
+    const loggeddata = JSON.parse(localStorage.getItem("loggeduser"))
+
 
   return (
     <>
@@ -42,7 +49,7 @@ const Customdashboard = ({inputdoctor}) => {
                    Admin 
                   </Text>
                    </Link>
-                  <Text   onClick={handleLogout} fontWeight={"600"} fontSize={"1.1rem"} color="gray" mt="5" mb="5">
+                  <Text   onClick={handleLog} fontWeight={"600"} fontSize={"1.1rem"} color="gray" mt="5" mb="5">
                     Logout
                   </Text>
                 </Card>
@@ -52,7 +59,7 @@ const Customdashboard = ({inputdoctor}) => {
       
      <Box   mt={{ base:"1px ",md: "-40px", lg: "-40px" }}  p={{base:"5"}} >
       
-         <Text   textAlign={{ base: "start", lg: "center" }} > Hello Ashutosh </Text>
+         <Text   textAlign={{ base: "start", lg: "center" }} > Hello {loggeddata?.userName} </Text>
 
          <Heading  textAlign={{ base: "start", lg: "center" }} 
           >Let's Find Your Doctor </Heading>

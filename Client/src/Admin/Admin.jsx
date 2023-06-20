@@ -10,7 +10,7 @@ const Admin = () => {
     <>
       <Navbar/>
       <Box
-        border="3px solid black"
+        // border="3px solid black"
         h="100%"
         display={"flex"}
         justifyContent={"space-between"}
@@ -20,8 +20,8 @@ const Admin = () => {
         </Box>
 
         <Box
-          border={"2px solid red"}
-          w={{ base: "100%", md: "95%", lg: "92%" }}
+         
+          w={{ base: "100%", md: "95%", lg: "95%" }}
           m={{ base: "auto" }}
         >
           <Dashboard />
