@@ -16,23 +16,24 @@ const Sidebar = () => {
         position={"relative"} alignItems={"center"}  justifyContent={"center"}
        display={{base:"none", md:"flex", lg:"flex"}} flexDirection={"column"} >
                
-               <Link to="/"> 
+               {/* <Link to="/">  */}
               <Box  p="2" m="auto">      
                  <AiOutlineDashboard fontSize="1.2rem" />
               </Box>
-               </Link>
-             <Link to="/">
+               {/* </Link> */}
+
+             {/* <Link to="/"> */}
               <Box  p="2" m="auto" > 
               <BsListUl fontSize="1.2rem" />
                </Box>
-               </Link>
+               {/* </Link> */}
 
                <Divider  color={"gray"} />
-               <Link to="/">
+               {/* <Link to="/"> */}
               <Box  p="2" m="auto">                 
                <AddIcon fontSize="1.2rem" />
                </Box>
-               </Link>
+               {/* </Link> */}
 
         </Box>
     

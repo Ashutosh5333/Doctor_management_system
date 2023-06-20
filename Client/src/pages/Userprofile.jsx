@@ -10,7 +10,7 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import { CloseIcon, HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
+
 import UserbottomNavbar from "../Component/UserbottomNavbar";
 import { Image } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
@@ -18,13 +18,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAppointmentdata } from "../Redux/AppReducer/Action";
 import UserNavbar from "./UserNavbar";
 import UserSidebar from "./UserSidebar";
+import {Link} from "react-router-dom"
 
 export const Userprofile = () => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
   const dispatch = useDispatch();
   const Myappoinmnet = useSelector((store) => store.AppReducer.myAppoinment);
   
-   console.log(Myappoinmnet)
+
 
   useEffect(() => {
     dispatch(getAppointmentdata);
@@ -47,8 +48,8 @@ export const Userprofile = () => {
             <UserSidebar />
           </Flex>
 
-          <Flex border="1px solid gray" w="80%" flexDirection={"column"}>
-            <Box w="80%" m="auto" >
+          <Flex  w="80%" flexDirection={"column"}>
+            <Box>
               <Heading textAlign={"center"}> Your Appoinment Details </Heading>
             </Box>
           {
@@ -121,8 +122,8 @@ export const Userprofile = () => {
                   w="50%" p="2"
                 >
                   <Text textAlign={"start"} fontWeight={"600"}> Cancel </Text>
-                   <Box bg="red" borderRadius={"10"} color="#fff" p="1">
-                    cancellation
+                   <Box bg="red" borderRadius={"10"} color="#fff" h="5vh" p="1" >
+                    Cancellation
                    </Box>
                 </Flex>
 
@@ -133,8 +134,9 @@ export const Userprofile = () => {
 
                 <Flex
                   justifyContent={"space-around"}
-                  w="50%"
+                  w="100%"
                   p="2"
+                  textAlign={"start"}
                 >
                    <Text textAlign={"start"} fontWeight={"600"}>Appoinment Status</Text>
                   <Text>{el.Status} </Text>
@@ -210,13 +212,47 @@ export const Userprofile = () => {
                 </Text>
               </Box>
 
-              <Box w="90%" m="auto" mt="5" textAlign={"center"}>
+
+
+
+            </Flex>
+
+           {/* ----------------------------- */}
+
+           <Flex h="60vh" w="95%" m="auto" flexDirection={"column"}>
+              {
+                Myappoinmnet.length >0 && Myappoinmnet.map((el) =>{
+                   return   <Box
+                w="100%"
+                borderRadius={"10"}
+                bg="gray.100"
+                p="5"
+                m="auto"
+                mt="5"
+              >
+               <Text mt="3" fontWeight={"600"} >  <span style={{fontSize:"1rem", fontWeight:"400"}}>Appoinment Date : </span> {new Date(el.createdAt).toDateString()} </Text>
+               <Text mt="2" fontWeight={"600"}>  <span style={{fontSize:"1rem", fontWeight:"400"}}>Patient  Name : </span>{el.pateintname}  </Text>
+
+               <Text mt="2" fontWeight={"600"}>  <span style={{fontSize:"1rem", fontWeight:"400"}}>Mobile Number : </span>{ el.Mobile}  </Text>
+               <Text mt="2" fontWeight={"600"}>  <span style={{fontSize:"1rem", fontWeight:"400"}}>Status : </span>{el.Status}  </Text>
+              
+              </Box>
+                })
+
+              }
+            
+              
+            </Flex>
+
+            <Box w="90%" m="auto" mt="5" textAlign={"center"}>
+              <Link to="/doctordash">
                 <Button bg="blue" color="#fff" p="5">
                   {" "}
                   Back To Doctor dashboard{" "}
                 </Button>
+              </Link>
               </Box>
-            </Flex>
+
           </Flex>
         </Box>
       )}
