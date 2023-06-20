@@ -1,44 +1,26 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-} from "@chakra-ui/react";
+
 import {
   Box,
   Button,
   Flex,
   Card,
-  Input,
-  InputGroup,
+  Input,  InputGroup,
   InputLeftElement,
-  Select,
-  Text,
-  useBreakpointValue,
+  Text,  useBreakpointValue,
   useDisclosure,
-  Stack,
-  IconButton,
 } from "@chakra-ui/react";
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
-import { CloseIcon, HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
+  Table,  Thead,Tbody,
+  Tr,  Th,  Td,  TableContainer,} from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { ProjectSkelton } from "./ProjectSkelton";
-import Pagination from "./Pagination";
+
 
 const AppoinmentListCard = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const dispatch = useDispatch();
   const [inputdata, SetInputData] = useState(" ");
   const [current, SetCurrent] = useState(1);
@@ -106,51 +88,17 @@ const AppoinmentListCard = () => {
               <Input
                 mt="3"
                 onChange={(e) => SetInputData(e.target.value)}
-                placeholder="Search"
+                placeholder="Search by Patient"
                 type="Search"
                 variant={"unstyled"}
               />
             </InputGroup>
           </Box>
 
-          <IconButton
-            color="black"
-            size="md"
-            bg="white"
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon fontSize="30px" />}
-            aria-label="Open Menu"
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
 
-          <Box
-            display={{ base: "none", md: "none", lg: "flex" }}
-            w="200px"
-            justifyContent={"space-evenly"}
-            p="2"
-          >
-           
-          </Box>
+         
 
-          <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
-            <DrawerOverlay />
-            <DrawerContent>
-              <DrawerHeader> Sort By Project </DrawerHeader>
-              <DrawerBody>
-                <Card spacing={4}>
-                  <Text fontSize={"1.1rem"} color="gray" mt="5">
-                    Type
-                  </Text>
-                  <Text fontSize={"1.1rem"} color="gray" mt="5">
-                    Location
-                  </Text>
-                  <Text fontSize={"1.1rem"} color="gray" mt="5" mb="5">
-                    Status
-                  </Text>
-                </Card>
-              </DrawerBody>
-            </DrawerContent>
-          </Drawer>
+         
         </Box>
 
         {/* ------ Serach bar ^^^ --------  */}
@@ -159,7 +107,7 @@ const AppoinmentListCard = () => {
           {!SmallScreen && (
             <TableContainer w="100%" align="start" mb="10">
               <Table variant="simple">
-                <Thead bg="blue.100" p="2">
+                <Thead bg="green.200" p="2">
                   <Tr>
                     <Th fontsize="2rem" color="black">
                       Appoinment Date
@@ -190,7 +138,23 @@ const AppoinmentListCard = () => {
 
                 <Tbody mb="2">
                   {Projectdata.length > 0 ? (
-                    Projectdata.map((el) => {
+                    Projectdata.filter((value) => {
+                if (inputdata == "") {
+                  return value;
+                } else if (
+                  value.Doctor.toLowerCase().includes(
+                    inputdata.toLowerCase()
+                  )
+                ) {
+                  return value;
+                } else if (
+                  value.pateintname.toLowerCase().includes(inputdata.toLowerCase())
+                ) {
+                  return value;
+                }
+              })  
+
+                    .map((el) => {
                       return (
                         <Tr key={el._id}>
                           <Box align="start" w="100px" p="2">
@@ -228,7 +192,23 @@ const AppoinmentListCard = () => {
         {SmallScreen && (
           <Box w={{ base: "95%" }} m="auto" mb="10">
             {Projectdata.length > 0 ? (
-              Projectdata.map((el) => {
+              
+              Projectdata.filter((value) => {
+                if (inputdata == "") {
+                  return value;
+                } else if (
+                  value.Doctor.toLowerCase().includes(
+                    inputdata.toLowerCase()
+                  )
+                ) {
+                  return value;
+                } else if (
+                  value.pateintname.toLowerCase().includes(inputdata.toLowerCase())
+                ) {
+                  return value;
+                }
+              })  
+              .map((el) => {
                 return (
                   <Card
                     key={el._id}
