@@ -92,6 +92,29 @@ AppointmentRouter.delete("/appoinment/delete/:prodId", Authenticate ,async (req,
 });
 
 
+//  ------------------- Admin  approved   -------------// 
+
+
+AppointmentRouter.put("/status/:id",async(req,res)=>{
+  const id=req.params.id;
+try {
+  const Appoinmnet = await AppointmentModel.findById(id)
+  if (!Appoinmnet) {
+    res.send({ msg: 'project not found' });
+  } else {
+      const {Status}=req.body
+      Appoinmnet.Status= Status
+    await Appoinmnet.save();
+    res.send({ msg: 'Appoinment updated successfully' });
+  }
+} catch (err) {
+  res.send({msg:"Error in updating Appoinmnet data,try again"});
+}
+})
+
+
+
+
 
 
 

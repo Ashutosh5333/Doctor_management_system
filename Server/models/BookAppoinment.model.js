@@ -7,7 +7,7 @@ const AppoinmentSchema = mongoose.Schema({
         Mobile:String,
         Date:String,
         userId:String,
-        Status: {type:String ,default:"Registered Succesfully wait for confirmation" },
+        Status: {type:String ,default:"Registered" },
         bookedby:{type:mongoose.Types.ObjectId,ref:"user",required:true}
 },{
         timestamps:true
