@@ -47,7 +47,7 @@ const UserRouter = express.Router();
               if(user.length>0){
                 const hasedpassword = user[0].password
             
-                const userdata = await Usermodel.find()
+                const userdata = await Usermodel.find({email})
                  bcrypt.compare(password, hasedpassword, function(err, result) {
                     if(result){
                        const token = jwt.sign({userId:user[0]._id},"hush")

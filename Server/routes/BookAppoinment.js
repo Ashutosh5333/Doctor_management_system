@@ -112,7 +112,23 @@ try {
 }
 })
 
+  
+ // ------------------- 
 
+
+//  AppointmentRouter.get("/countproject",async(req,res)=>{ 
+//   try{
+//      const data ={}
+//      data.totalProject=await AppointmentModel.countDocuments();
+//      data.closeProject=await AppointmentModel.countDocuments({Status:"Registered"});
+//      data.Waiting=await AppointmentModel.countDocuments({Status:"Waiting"});
+//      data.cancelProject=await AppointmentModel.countDocuments({Status:"Cancelled"});
+
+  
+//   }catch(err){
+//     res.send({msg:"Erroe in getting data"})
+//   }
+// })
 
 
 
