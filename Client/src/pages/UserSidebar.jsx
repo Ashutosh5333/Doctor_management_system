@@ -5,8 +5,7 @@ import {
   Heading,
   Image,
   Text,
-  UnorderedList,
-  ListItem,
+  Button
 } from "@chakra-ui/react";
 import { AiFillHome } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -38,21 +37,28 @@ const UserSidebar = () => {
           <Box> </Box>
         </Box>
 
-        <Box p={5} textAlign={"center"} mt="10">
+        <Box p={5} textAlign={"center"} mt="10"  fontWeight={"600"}>
         
           <Text fontSize={".8rem"} color="#050452" textAlign={"start"} fontWeight={"600"}>
              {`Name : - ${loggeddata?.userName} ` }
           </Text>
         </Box>
 
-        <Box p={5} textAlign={"center"} mt="3">
+        <Box p={5} textAlign={"center"} mt="3"  fontWeight={"600"}>
         
         <Text fontSize={".8rem"} color="#050452" textAlign={"start"} fontWeight={"600"}>
            {`Email : - ${loggeddata?.userEmail} ` }
         </Text>
       </Box>
-
-
+      
+             <Box w="50%" mr="1"  mt="5" textAlign={"center"}>
+              <Link to="/doctordash">
+                <Button bg="blue" color="#fff" p="5">
+                  {" "}
+                  Back dashboard
+                </Button>
+              </Link>
+            </Box>
       
       </Box>
     </Box>

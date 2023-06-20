@@ -73,6 +73,7 @@ export const Userprofile = () => {
                   >
                     <Flex h="7vh" gap="2" mt="5">
                       <Flex
+                        borderRadius={"10"}
                         border="1px solid gray"
                         justifyContent={"space-around"}
                         w="50%"
@@ -87,6 +88,7 @@ export const Userprofile = () => {
 
                       <Flex
                         border="1px solid gray"
+                        borderRadius={"10"}
                         justifyContent={"space-around"}
                         w="50%"
                         p="2"
@@ -101,6 +103,7 @@ export const Userprofile = () => {
                     <Flex h="7vh" gap="2" mt="5">
                       <Flex
                         border="1px solid gray"
+                        borderRadius={"10"}
                         justifyContent={"space-around"}
                         w="50%"
                         p="2"
@@ -114,6 +117,7 @@ export const Userprofile = () => {
 
                       <Flex
                         border="1px solid gray"
+                        borderRadius={"10"}
                         justifyContent={"space-around"}
                         w="50%"
                         p="2"
@@ -128,6 +132,7 @@ export const Userprofile = () => {
 
                     <Flex  h="7vh" gap="2" mt="5">
                       <Flex
+                        borderRadius={"10"}
                         border="1px solid gray"
                         justifyContent={"space-around"}
                         w="50%"
@@ -146,6 +151,7 @@ export const Userprofile = () => {
                     <Flex h="8vh" gap="2" mt="5">
                       <Flex
                         justifyContent={"space-around"}
+                        // borderRadius={"10"}
                         w="100%"
                         p="2"
                         textAlign={"start"}
