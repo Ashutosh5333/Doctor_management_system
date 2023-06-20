@@ -24,7 +24,7 @@ const AllDoctor = ({inputdoctor}) => {
 
   return (
     <>
-      <Box  w="90vw" m="auto" >
+      <Box  w="90vw" m="auto" mb="20" >
         <SimpleGrid columns={[1, 2, 3]} spacing={4}>
           {
             doctordata.filter((value) => {

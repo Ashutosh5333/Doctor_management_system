@@ -109,13 +109,13 @@ const AdminLogin = () => {
      <Box>
       <Navbar/>
 
-          <Box width={"100%"} position={"relative"}  m="auto">
+          <Box width={"100%"}  m="auto" >
             <Card
-              w={{ base: "100%", md: "50%", lg: "450px" }}
+              w={{ base: "95%", md: "50%", lg: "450px" }}
               m="auto"
               mt={{ base: "15%", md: "20px", lg: "5px" }}
             >
-              <Box rounded="lg" boxShadow={"lg"} p="8">
+              <Box   p="8">
                 <Stack>
                   <Stack align={{ base: "start", lg: "center" }}>
                     <Text

@@ -214,6 +214,7 @@ const SingleDoctor = () => {
           w={{ base: "90vw", md: "80vw", lg: "80vw" }}
           m="auto"
           mt={{ base: "22%", md: "1px", lg: "1px" }}
+          mb="10"
         >
           <Box
             width="100%"

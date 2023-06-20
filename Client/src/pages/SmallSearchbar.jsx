@@ -23,7 +23,7 @@ const SmallSearchbar = () => {
   return (
     <>
       {SmallScreen && (
-        <Box w="100%" h="90vh" boxShadow={"lg"}>
+        <Box w="100%" h="90vh" boxShadow={"lg"} mb="20">
           <Box boxShadow={"lg"} borderRadius={"lg"} p="2">
             <Flex
               width={{ base: "90%" }}
@@ -48,19 +48,9 @@ const SmallSearchbar = () => {
           </Box>
 
           {/* -------------------------------- */}
-{/* 
-          <Box
-            position={"relative"}
-            top="40"
-            h="20vh"
-            w="90vw"
-            m="auto"
-            borderRadius={"10"}
-          >
-            <Image src={loginlogo} alt="serachbar" />
-          </Box> */}
-          
-          <Box  w="90vw" m="auto" mt="10" >
+
+
+          <Box  w="90vw" m="auto" mt="5" mb="20"  >
         <SimpleGrid columns={[1,1,1]} spacing={4}>
           {
             doctordata.filter((value) => {

@@ -33,19 +33,21 @@ const MainRoutes = () => {
      <Route  path='/sign' element={<Signup/>} />
      
      <Route  path='/doctordash' element={
+        <PrivateRoute>
      <UserDashboard/>
+      </PrivateRoute>
      } />
      
      <Route  path='/doctordash/:id' element={
-      <PrivateRoute>
+    
      <SingleDoctor/>
-     </PrivateRoute>
+  
      } />
 
      <Route  path='/userprofile' element={
-       <PrivateRoute>
+     
      <Userprofile/>
-       </PrivateRoute>
+     
      
      } />
      
@@ -57,7 +59,9 @@ const MainRoutes = () => {
      <Admin/>
       </Adminprivate>
      } />
+     
      <Route  path='/adminlogin' element={<AdminLogin/>} />
+
      <Route  path='/admin/appoinmentlist' element={
       <Adminprivate>
      <AppoinmnetList/>

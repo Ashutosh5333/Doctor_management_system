@@ -1,16 +1,18 @@
+import React ,{useState} from "react";
 import { Box, Image } from "@chakra-ui/react";
-import React from "react";
 import DashboardL from "../Images/DashboardL.jpg";
 import Projectlist from "../Images/Projectlist.jpg";
 import  Dashboardactive from "../Images/Dashboardactive.png";
 import Projectlistactive from "../Images/Projectlistactive.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { BiLogOut } from 'react-icons/bi';
 
 
+const userdata = JSON.parse(localStorage.getItem("Admin"))
 
 const Bottombar = () => {
   const navigate = useNavigate()
+   const [userAvablabe, SetuserAvalabe] = useState(false)
 
    const handlelogout = () =>{
       localStorage.clear()

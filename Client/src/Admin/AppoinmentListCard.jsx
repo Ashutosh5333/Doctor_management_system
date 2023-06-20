@@ -17,6 +17,7 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { ProjectSkelton } from "./ProjectSkelton";
+import Pagination from './Pagination';
 
 
 const AppoinmentListCard = () => {
@@ -26,18 +27,19 @@ const AppoinmentListCard = () => {
   const [current, SetCurrent] = useState(1);
   const [Projectdata, SetProjectdata] = useState([]);
   const [page, SetPage] = useState(5);
-  const [sortBy, SetSortBy] = useState(" ");
+
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
 
 
   useEffect(() => {
     getdata();
-  }, []);
-
+  }, [current,page]);
+  
+  
   async function getdata() {
     try {
       const res = await fetch(
-        `https://doctorappoinment.onrender.com/allappoinment`
+        `https://doctorappoinment.onrender.com/allappoinment/?page=${current}&limit=${page}`
       );
       const data = await res.json();
       SetProjectdata(data);
@@ -70,6 +72,12 @@ const AppoinmentListCard = () => {
     }
 }
 
+const handlenext = () => {
+  SetCurrent(current + 1);
+};
+const handleprev = () => {
+  SetCurrent(current - 1);
+};
   
   return (
     <>
@@ -119,7 +127,7 @@ const AppoinmentListCard = () => {
                       Mobile Number
                     </Th>
                     <Th fontsize="2rem" color="black">
-                     Apply Date
+                      Doctor Name
                     </Th>
                     
                     <Th fontsize="2rem" color="black">
@@ -165,8 +173,8 @@ const AppoinmentListCard = () => {
                           </Box>
                           <Td>{el.pateintname}  </Td>
                           <Td>{el.Mobile} </Td>
-                          <Td>  {new Date(el.createdAt).toDateString()} </Td>
-                         
+            
+                          <Td>  {el.Doctor} </Td>
                           <Td fontWeight={"600"}>{el.Status} </Td>
                           <Td> 
                            <Button onClick={() =>handleApproved(el._id)} bg="green.300" color="#fff" > Approved </Button>
@@ -190,7 +198,7 @@ const AppoinmentListCard = () => {
         {/* --------- Mobile View ------------ */}
 
         {SmallScreen && (
-          <Box w={{ base: "95%" }} m="auto" mb="10">
+          <Box w={{ base: "95%" }} m="auto" mb="20">
             {Projectdata.length > 0 ? (
               
               Projectdata.filter((value) => {
@@ -346,13 +354,18 @@ const AppoinmentListCard = () => {
               <ProjectSkelton />
             )}
 
-            <Box
-              display={"flex"}
-              mb={{ base: "45px", lg: "10" }}
-              justifyContent={"center"}
-            >
-             
-            </Box>
+          <Box
+          display={"flex"}
+          mb={{ base: "10px", lg: "10px" }}
+          justifyContent={"center"}
+        >
+          <Pagination
+            total={3}
+            handlenext={handlenext}
+            handleprev={handleprev}
+            current={current}
+          />
+        </Box>
           </Box>
         )}
 
@@ -363,7 +376,12 @@ const AppoinmentListCard = () => {
           mb={{ base: "10px", lg: "10px" }}
           justifyContent={"center"}
         >
-          
+          <Pagination
+            total={3}
+            handlenext={handlenext}
+            handleprev={handleprev}
+            current={current}
+          />
         </Box>
       </Box>
     </>
