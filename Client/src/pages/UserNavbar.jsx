@@ -49,7 +49,7 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                </Flex>
 
                <Flex width={{base : "", md  : '25%', lg :'15%'}} justifyContent='space-around' fontSize='25px'>
-               <Tooltip bg='#CBD5E0' color='black' label={isAuth ? "Logut" : "Login" } ><Link><Text onClick={handleLog}><BiLogOut/></Text></Link></Tooltip>
+               <Tooltip bg='#CBD5E0' color='black' label={ isAuth ? "Logut" : "Login" } ><Link><Text onClick={handleLog}><BiLogOut/></Text></Link></Tooltip>
                <Tooltip bg='#CBD5E0' color='black' label="admin"><Link to="/admin" ><Text><RiAdminFill/></Text></Link></Tooltip>
               <Tooltip bg='#CBD5E0' color='black' label="Profile"><Link to="/userprofile" ><Text><FaUserCircle/></Text></Link></Tooltip>
               </Flex>

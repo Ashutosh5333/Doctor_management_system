@@ -18,7 +18,7 @@ const UserDashboard = () => {
        <UserNavbar SetInputDoctor={SetInputDoctor} />
      }
        
-       <Customdashboard inputdoctor={inputdoctor} /> 
+       <Customdashboard SetInputDoctor={SetInputDoctor} inputdoctor={inputdoctor} /> 
 
        {
         SmallScreen && 

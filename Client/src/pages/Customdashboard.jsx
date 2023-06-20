@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, useDisclosure } from '@chakra-ui/react';
+import { Box, Input, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 import { Text ,  IconButton,Card } from '@chakra-ui/react';
 import { Heading } from '@chakra-ui/react';
 import CareSwiper from '../Swiper/CareSwiper';
@@ -7,15 +7,16 @@ import SpecialistSwiper from '../Swiper/SpecialistSwiper';
 import AllDoctor from '../Component/AllDoctor';
 import {
   Drawer,
-  DrawerBody,  DrawerHeader,  DrawerOverlay,  DrawerContent,  DrawerCloseButton,} from "@chakra-ui/react";
+  DrawerBody,  DrawerHeader,  DrawerOverlay,  DrawerContent} from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import {Link} from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { handleLogOut } from './../Redux/AuthReducer/Action';
 
-const Customdashboard = ({inputdoctor}) => {
+const Customdashboard = ({inputdoctor,SetInputDoctor}) => {
    const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure();   
+  const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
 
   const handleLog = () =>{
     dispatch(handleLogOut)
@@ -63,7 +64,17 @@ const Customdashboard = ({inputdoctor}) => {
 
          <Heading  textAlign={{ base: "start", lg: "center" }} 
           >Let's Find Your Doctor </Heading>
-
+           
+           {
+            SmallScreen && <Box w="50vw" >
+            <Input
+              borderRadius='10px'
+                 onChange={ (e) =>SetInputDoctor(e.target.value)}
+                 border='0px' placeholder='Search Doctor' padding='5px'
+            />
+           </Box>
+           }
+          
         
        
        <Box h="35vh" >
@@ -85,7 +96,7 @@ const Customdashboard = ({inputdoctor}) => {
        
        <Box h="auto" mt="10" >
          <Text     color="#220f7a" fontWeight={"700"} p="5"> Available Doctors</Text>
-          <Box   >
+          <Box >
             
                <AllDoctor inputdoctor={inputdoctor}/>
 
