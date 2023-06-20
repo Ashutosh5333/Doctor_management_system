@@ -116,21 +116,37 @@ try {
  // ------------------- 
 
 
-//  AppointmentRouter.get("/countproject",async(req,res)=>{ 
-//   try{
-//      const data ={}
-//      data.totalProject=await AppointmentModel.countDocuments();
-//      data.closeProject=await AppointmentModel.countDocuments({Status:"Registered"});
-//      data.Waiting=await AppointmentModel.countDocuments({Status:"Waiting"});
-//      data.cancelProject=await AppointmentModel.countDocuments({Status:"Cancelled"});
+ AppointmentRouter.get("/countAppointment",async(req,res)=>{ 
+  try{
+     const data ={}
+     data.totalAppiontment=await AppointmentModel.countDocuments();
+     data.NewAppoinment=await AppointmentModel.countDocuments({Status:"Registered"});
+     data.Waiting=await AppointmentModel.countDocuments({Status:"Waiting"});
+     data.Approved=await AppointmentModel.countDocuments({Status:"Approved"});
 
-  
-//   }catch(err){
-//     res.send({msg:"Erroe in getting data"})
-//   }
-// })
+   return res.status(200).send({data:data})
+  }catch(err){
+    res.send({msg:"Erroe in getting data"})
+  }
+})
 
 
+      //  ------------- chart data ---------------- 
+
+      AppointmentRouter.get("/chartdata",async(req,res)=>{ 
+    try{
+       const Closed = await AppointmentModel.aggregate([{$match:{Status:"Approved"}},
+       {$group: {_id:"$Doctor",Closedcount:{$sum:1}}},
+       {$sort:{_id:1}}
+      ])
+       const Total = await AppointmentModel.aggregate([{$group:{_id:"$Doctor",TotalCount:{$sum:1}}},
+       {$sort:{_id:1}}
+      ])
+      res.send({Closed:Closed,Total:Total})
+    }catch(err){
+      res.send({msg:"Erroe in getting data"})
+    }
+  })
 
 
 
