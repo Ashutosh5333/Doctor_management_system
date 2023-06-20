@@ -15,10 +15,11 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { Adminpost } from "../Redux/AuthReducer/Action";
 
 const AdminLogin = () => {
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const toast = useToast();
     const [show, setShow] = useState(false);
     const [errors, SetErrors] = useState({});
@@ -37,9 +38,39 @@ const AdminLogin = () => {
         const { name, value } = e.target;
         SetPost({ ...post, [name]: value });
       };
-    
+   
       const handleSubmit = () => {
-    
+         SetErrors(validated(post));
+      if(post.email && post.password ){
+             SetIsSubmit(true);
+    dispatch(Adminpost(post))
+      .then((res) => {
+        SetMsgerr(res.payload.msg);
+        if (res.type === "ADMINUSERSUCESS") {
+          if (res.payload.msg !== "Loginsucessfull") {
+            toast({
+              position: "top",
+              colorScheme: "red",
+              status: "error",
+              title: " Wrong Credentails",
+            });
+          } else {
+            toast({
+              position: "top",
+              colorScheme: "green",
+              status: "success",
+              title: "Login Successfully",
+            });
+            localStorage.setItem("Admin", JSON.stringify(res.payload.msg));
+            navigate("/admin");
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err.msg);
+      });
+
+      }
       };
     
       const handleClickShow = () => {

@@ -43,6 +43,31 @@ const getsignFail = () => {
  }
 }
 
+
+//  -------------- Admin user ----------
+
+
+const AdminloggedReq = () =>{
+  return {
+     type: types.ADMINUSERREQ
+  }
+}
+
+const AdminloggedSucess = (payload) => {
+  return {
+     type :types.ADMINUSERSUCESS,
+     payload,
+  }
+}
+
+const AdminloggedFail = () => {
+ return {
+     type :types.ADMINUSERFAILURE
+ }
+}
+
+
+
 export const Loginpost = (payload) => (dispatch) => {
   dispatch(getLoginreq());
   return axios
@@ -63,5 +88,21 @@ export const Signuppost =(payload) => (dispatch) => {
     })
     .catch((err) => {
       dispatch(getsignFail());
+    });
+};
+
+
+    // --------------- Admin Logged ---------------
+
+    
+export const Adminpost = (payload) => (dispatch) => {
+  dispatch(AdminloggedReq());
+  return axios
+    .post(`https://doctorappoinment.onrender.com/admin`, payload)
+    .then((r) => {
+      return dispatch(AdminloggedSucess(r.data));
+    })
+    .catch((err) => {
+      dispatch(AdminloggedFail());
     });
 };

@@ -27,6 +27,12 @@ export const Reducer = (state = initailState, action) => {
           isLoading:false,
           isError:false,
       }
+      case  types.ADMINUSERSUCESS:
+        return {
+            ...state,
+            isLoading:false,
+            isError:false,
+        }
 
 
     default:

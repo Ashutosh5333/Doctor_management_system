@@ -47,9 +47,6 @@ const AppoinmentListCard = () => {
   const [sortBy, SetSortBy] = useState(" ");
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
 
-  useEffect(() => {
-   
-  }, []);
 
   useEffect(() => {
     getdata();
@@ -66,6 +63,30 @@ const AppoinmentListCard = () => {
       console.log(err);
     }
   }
+
+  const handleApproved = async (_id) =>{
+          try{
+            const updated = await axios.put(`https://doctorappoinment.onrender.com/status/${_id}`,{
+               Status:"Approved"
+            })
+            getdata();
+          }
+              catch(err) {
+             console.log(err)
+          }
+  }
+
+  const handlecancelled = async (_id) =>{
+    try{
+      const updated = await axios.put(`https://doctorappoinment.onrender.com/status/${_id}`,{
+         Status:"Waiting"
+      })
+      getdata();
+    }
+        catch(err) {
+       console.log(err)
+    }
+}
 
   
   return (
@@ -184,11 +205,11 @@ const AppoinmentListCard = () => {
                          
                           <Td fontWeight={"600"}>{el.Status} </Td>
                           <Td> 
-                           <Button bg="green.300" color="#fff" > Approved </Button>
+                           <Button onClick={() =>handleApproved(el._id)} bg="green.300" color="#fff" > Approved </Button>
                            </Td>
                          
                           <Td fontWeight={"600"}>
-                           <Button bg="red.300" color="#fff"> Cancel </Button>
+                           <Button  onClick={() =>handlecancelled(el._id)} bg="red.300" color="#fff"> Cancel </Button>
                            </Td>
                         </Tr>
                       );

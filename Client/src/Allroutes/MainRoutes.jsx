@@ -10,6 +10,8 @@ import SingleDoctor from '../Component/SingleDoctor'
 import { Userprofile } from '../pages/Userprofile'
 import SmallSearchbar from '../pages/SmallSearchbar'
 import AppoinmnetList from '../Admin/AppoinmnetList'
+import Adminprivate from '../AdminprivateRoute/Adminprivate'
+
 
 
 const MainRoutes = () => {
@@ -25,9 +27,17 @@ const MainRoutes = () => {
      <Route  path='/doctordash/:id' element={<SingleDoctor/>} />
      <Route  path='/userprofile' element={<Userprofile/>} />
      <Route  path='/mobilesearchbar' element={<SmallSearchbar/>} />
-     <Route  path='/admin' element={<Admin/>} />
+     <Route  path='/admin' element={
+      <Adminprivate>
+     <Admin/>
+      </Adminprivate>
+     } />
      <Route  path='/adminlogin' element={<AdminLogin/>} />
-     <Route  path='/admin/appoinmentlist' element={<AppoinmnetList/>} />
+     <Route  path='/admin/appoinmentlist' element={
+      <Adminprivate>
+     <AppoinmnetList/>
+      </Adminprivate>
+     } />
 
     </Routes>
   )

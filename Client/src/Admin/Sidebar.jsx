@@ -9,6 +9,10 @@ import { BiLogOut } from 'react-icons/bi';
 
 
 const Sidebar = () => {
+  const handlelogout = () =>{
+    localStorage.clear()
+  }
+
 
   return (
     <Box h="auto"  boxShadow={"lg"}>
@@ -33,7 +37,7 @@ const Sidebar = () => {
              
                <Link>
               <Box  p="2" m="auto" > 
-              <BiLogOut fontSize="1.2rem" />
+              <BiLogOut onClick={handlelogout} fontSize="1.2rem" />
              </Box>
                </Link>
             
