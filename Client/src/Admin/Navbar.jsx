@@ -22,12 +22,7 @@ const Navbar = () => {
 
       </Box>
 
-      {/* <Box  p="5" alignContent={"end"}>
-        <Text color="#ffffff" textAlign={"end"} fontSize={{base:"1rem",md:"1.2rem",lg:"1.5rem"}} >
-         <BsFillHouseCheckFill/>
-        </Text>
-      </Box> */}
-
+    
       
     </Box>
     </>

@@ -9,19 +9,20 @@ import {BiLogIn,BiLogOut} from "react-icons/bi"
 import {RiAdminFill} from "react-icons/ri"
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLogOut } from './../Redux/AuthReducer/Action';
-
+import {FaHospitalUser} from "react-icons/fa"
 
 const UserNavbar = ({SetInputDoctor}) => {
 const { isOpen, onOpen, onClose } = useDisclosure()
  const dispatch =useDispatch()
-    const btnRef = React.useRef()
+
     const isAuth = useSelector(store =>store.AuthReducer.isAuth)
       
      const handleLog = () =>{
       dispatch(handleLogOut())
       localStorage.clear()
      }
-     
+
+     const userdata = JSON.parse(localStorage.getItem("loggeduser"))     
 
   return (
     <>
@@ -33,7 +34,10 @@ const { isOpen, onOpen, onClose } = useDisclosure()
             <IconButton color='black' size='md' bg='white' icon={isOpen ? <CloseIcon /> : <HamburgerIcon fontSize='30px'/>} aria-label='Open Menu' display={{ md: 'none' }} onClick={isOpen ? onClose : onOpen}/>
               
             <Flex width={{base : "20%", md :'13%', lg : '10%'}} justifyContent={'center'} >
-             <Link to='/doctordash'><Image w="50px" h="50px" src='http://localhost:3000/static/media/front.303949ce0bf6609b2f0c.jpg' width='100px' m='auto'/></Link>
+             <Link to='/doctordash'>
+             {/* <Image w="50px" h="50px" src='http://localhost:3000/static/media/front.303949ce0bf6609b2f0c.jpg' width='100px' m='auto'/> */}
+             <FaHospitalUser fontSize={"3rem"}/>
+             </Link>
             </Flex>
 
               <Flex as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} gap='10px' w={{base : '', md : '90%', lg : '95%'}} justifyContent='space-around' alignItems='center' padding='10px'>
@@ -51,7 +55,9 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                <Flex width={{base : "", md  : '25%', lg :'15%'}} justifyContent='space-around' fontSize='25px'>
                <Tooltip bg='#CBD5E0' color='black' label={ isAuth ? "Logut" : "Login" } ><Link><Text onClick={handleLog}><BiLogOut/></Text></Link></Tooltip>
                <Tooltip bg='#CBD5E0' color='black' label="admin"><Link to="/admin" ><Text><RiAdminFill/></Text></Link></Tooltip>
-              <Tooltip bg='#CBD5E0' color='black' label="Profile"><Link to="/userprofile" ><Text><FaUserCircle/></Text></Link></Tooltip>
+              <Tooltip bg='#CBD5E0' color='black'
+               label={userdata ? userdata.userName :"Profile" }  >
+              <Link to="/userprofile" ><Text><FaUserCircle/></Text></Link></Tooltip>
               </Flex>
               </Flex>
           </Flex> 

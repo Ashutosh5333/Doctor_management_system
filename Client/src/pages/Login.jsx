@@ -38,7 +38,7 @@ const Login = () => {
       setLoading(true)
       dispatch(Loginpost(post))
       .then((res) =>{
-        // console.log(res)
+       
          if(res.type === "LOGINUSERSUCESS" && res.payload.msg !== "loginSucessfull"){
           toast({
             position: "top",

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Input, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
-import { Text ,  IconButton,Card } from '@chakra-ui/react';
+import { Text , Flex,Image, IconButton,Card } from '@chakra-ui/react';
 import { Heading } from '@chakra-ui/react';
 import CareSwiper from '../Swiper/CareSwiper';
 import SpecialistSwiper from '../Swiper/SpecialistSwiper';
@@ -20,7 +20,7 @@ const Customdashboard = ({inputdoctor,SetInputDoctor}) => {
 
   const handleLog = () =>{
     dispatch(handleLogOut())
-   
+    localStorage.clear()
   }
 
     const loggeddata = JSON.parse(localStorage.getItem("loggeduser"))
@@ -60,7 +60,8 @@ const Customdashboard = ({inputdoctor,SetInputDoctor}) => {
       
      <Box   mt={{ base:"1px ",md: "-40px", lg: "-40px" }}  p={{base:"5"}} >
       
-         <Text   textAlign={{ base: "start", lg: "center" }} > Hello {loggeddata?.userName} </Text>
+        <Text   textAlign={{ base: "start", lg: "center" }} color="#050452" fontWeight={"600"} >
+        <span style={{fontSize:"4rem", color:"red"}}>H</span>ello {loggeddata?.userName} </Text>
 
          <Heading  textAlign={{ base: "start", lg: "center" }} 
           >Let's Find Your Doctor </Heading>
@@ -93,13 +94,32 @@ const Customdashboard = ({inputdoctor,SetInputDoctor}) => {
           </Box>
        </Box>
 
+       <Flex w="90vw" m="auto" mt="10"
+          justifyContent={"space-around"}
+         flexDirection={{base:"column",md:"row",lg:"row"}} gap="5"
+        >
+          
+          <Flex boxShadow={"lg"} mt="10">
+             <Image src="https://media.istockphoto.com/id/1369424699/photo/illustration-of-two-doctors-with-a-virus-stricken-patient-in-a-hospital-bed.jpg?s=612x612&w=0&k=20&c=n7lQXVynFLdMrrKF1Yr6ypCfHdAIWzP37kw3pbi-phQ="
+               alt="hospital"
+              />
+          </Flex>
+          
+          <Flex boxShadow={"lg"} mt="10">
+          <Image src="https://media.istockphoto.com/id/1369424894/photo/illustration-of-a-doctor-in-his-office-attending-to-a-patient-hospital-and-medical-center.jpg?s=612x612&w=0&k=20&c=WOK5ZRR3ntBcNd9a-EZWBumVmECBnHNYIsCC5i-MbC4="
+               alt="hospital"
+              />
+             
+           </Flex>
+
+
+       </Flex>
+
        
        <Box h="auto" mt="10" >
          <Text     color="#220f7a" fontWeight={"700"} p="5"> Available Doctors</Text>
           <Box >
-            
                <AllDoctor inputdoctor={inputdoctor}/>
-
           </Box>
        </Box>
           
