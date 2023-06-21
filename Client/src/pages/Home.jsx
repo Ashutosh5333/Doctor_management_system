@@ -17,6 +17,7 @@ const Home = () => {
       <Box  width={{base:"70%",md:"50%",lg:"50%"}} h="30vh" m="auto"
       mt={{ base:"20px" ,md:"20px",lg:"30px"}}
       >  
+      
       <Box>
       <Image  justifyContent={"center"}
       width={{base:"400px",md:"300px",lg:"300px"}}  

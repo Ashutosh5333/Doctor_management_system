@@ -18,6 +18,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { ProjectSkelton } from "./ProjectSkelton";
 import Pagination from './Pagination';
+import { Skelton } from "./Skelton";
 
 
 const AppoinmentListCard = () => {
@@ -342,7 +343,6 @@ const handleprev = () => {
                       </Box>
                     </Flex>
 
-
                     <Flex justifyContent={"space-between"} p="2" gap="5">
                       <Button onClick={()=>handleApproved(el._id)} bg="green.300" color="#fff" > Approved </Button>
                       <Button onClick={()=>handlecancelled(el._id)} bg="red.300" color="#fff"> Cancel </Button>
@@ -351,7 +351,7 @@ const handleprev = () => {
                 );
               })
             ) : (
-              <ProjectSkelton />
+              <Skelton />
             )}
 
           <Box

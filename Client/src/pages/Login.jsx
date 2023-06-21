@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import {
   Box,  Button, Card,CardBody, FormControl,
-  FormLabel,FormErrorMessage, FormHelperText,  Input,Image,  Stack,  Text,  VStack,  useColorModeValue,useToast,
+  FormLabel,FormErrorMessage, FormHelperText,  Input,Image, Text,  VStack,  useToast,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { Loginpost } from "../Redux/AuthReducer/Action";
 
 const Login = () => {
-  const colorScheme = useColorModeValue("blue", "green");
   const [show, setShow] = useState(false);
   const [isEmail, setisEmail] = useState(false);
   const [isPassword, setisPassword] = useState(false);
@@ -111,6 +110,13 @@ const Login = () => {
                 borderRadius={"20"}
                 onChange={handleChange}
               />
+               {!isEmail ? (
+                <FormHelperText h="10px"></FormHelperText>
+              ) : (
+                <FormErrorMessage color="red">
+                  Email is required.
+                </FormErrorMessage>
+              )}
             </FormControl>
             <FormControl id="password" isInvalid={isPassword}>
               <FormLabel
