@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const AppoinmentSchema = mongoose.Schema({
+        ANumber:String,
         pateintname:String,
         email:String,
         Doctor:String,
