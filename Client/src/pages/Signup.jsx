@@ -17,6 +17,7 @@ const Signup = () => {
   const [isName, setisName] = useState(false);
   const [confimPassword, setconfirmPassword] = useState("");
   const [matchpassword, setmatchpassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
   const dispatch = useDispatch()
@@ -51,9 +52,10 @@ const Signup = () => {
       });
       }
       else{
+        setLoading(true)
          dispatch(Signuppost(post))
          .then((res) =>{
-          // console.log(res)
+         
            if(res.type ==="SIGNUPUSERSUCESS" && res.payload.data !== "user is already preasent" ){
             toast({
               position: "top",
@@ -63,6 +65,7 @@ const Signup = () => {
               duration: 3000,
             });
             navigate("/login")
+            setLoading(false)
           }
          }).catch((err) =>{
           console.log(err)
@@ -229,6 +232,7 @@ const Signup = () => {
               bg="#050452"
               color="#fff"
               borderRadius={"20"}
+              isLoading={loading}
             >
               Signup
             </Button>

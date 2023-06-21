@@ -33,20 +33,25 @@ const MainRoutes = () => {
      <Route  path='/sign' element={<Signup/>} />
      
      <Route  path='/doctordash' element={
-        <PrivateRoute>
+        // <PrivateRoute>
      <UserDashboard/>
-      </PrivateRoute>
+      // </PrivateRoute>
      } />
      
      <Route  path='/doctordash/:id' element={
-    
+
+     <PrivateRoute>
      <SingleDoctor/>
+     </PrivateRoute>
   
      } />
 
      <Route  path='/userprofile' element={
-     
+
+      <PrivateRoute>
+
      <Userprofile/>
+      </PrivateRoute>
      
      
      } />

@@ -19,8 +19,8 @@ const Customdashboard = ({inputdoctor,SetInputDoctor}) => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
 
   const handleLog = () =>{
-    dispatch(handleLogOut)
-    localStorage.clear()
+    dispatch(handleLogOut())
+   
   }
 
     const loggeddata = JSON.parse(localStorage.getItem("loggeduser"))

@@ -15,6 +15,7 @@ const Login = () => {
   const [isEmail, setisEmail] = useState(false);
   const [isPassword, setisPassword] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch()
 
@@ -34,6 +35,7 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (post.email !== ""  && post.password !== "") {
+      setLoading(true)
       dispatch(Loginpost(post))
       .then((res) =>{
         // console.log(res)
@@ -55,7 +57,7 @@ const Login = () => {
           localStorage.setItem("usertoken",JSON.stringify(res.payload.token))
           localStorage.setItem("loggeduser", JSON.stringify(res.payload.data))
           navigate("/doctordash")
-          
+          setLoading(false)
          }
       })
    
@@ -144,6 +146,8 @@ const Login = () => {
                 bg="#050452"
                 color="#fff"
                 borderRadius={"20"}
+             
+                isLoading={loading}
               >
                 Login
               </Button>

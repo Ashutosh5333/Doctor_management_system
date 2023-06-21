@@ -20,6 +20,7 @@ import {
 import { Card, Input } from "@chakra-ui/react";
 import UserNavbar from "./../pages/UserNavbar";
 import { ProjectSkelton } from "./../Admin/ProjectSkelton";
+import UserbottomNavbar from "./UserbottomNavbar";
 
 const SingleDoctor = () => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
@@ -30,6 +31,7 @@ const SingleDoctor = () => {
   });
   const toast = useToast();
   const lightColor = useColorModeValue("#757575", "#9aa0a6");
+  const [loading, setLoading] = useState(false);
   const [single, Setsingle] = useState();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -53,6 +55,7 @@ const SingleDoctor = () => {
       post.pateintname !== "" &&
       post.Date !== ""
     ) {
+      setLoading(true)
       dispatch(BookAppointment(post)).then((res) => {
         if (
           res.type == "BOOKAPPOINMETUCESS" &&
@@ -64,6 +67,7 @@ const SingleDoctor = () => {
             status: "success",
             title: "Appoinment registered Sucessfully",
           });
+          setLoading(false)
         }
       });
     } else {
@@ -214,7 +218,7 @@ const SingleDoctor = () => {
           w={{ base: "90vw", md: "80vw", lg: "80vw" }}
           m="auto"
           mt={{ base: "22%", md: "1px", lg: "1px" }}
-          mb="10"
+          mb="20"
         >
           <Box
             width="100%"
@@ -306,6 +310,7 @@ const SingleDoctor = () => {
                 bg="black"
                 color="#fff"
                 onClick={handleBookAppoinmet}
+                isLoading={loading}
               >
                 {" "}
                 Book Now{" "}
@@ -314,6 +319,8 @@ const SingleDoctor = () => {
           </Box>
         </Box>
       </Flex>
+
+      {SmallScreen && <UserbottomNavbar />}
     </>
   );
 };
