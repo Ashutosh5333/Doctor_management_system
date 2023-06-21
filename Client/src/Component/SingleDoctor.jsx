@@ -36,7 +36,9 @@ const SingleDoctor = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
+   const Number = Math.random(100)
   const [post, SetPost] = useState({
+    ANumber:Number,
     Mobile: "",
     Doctor: "",
     Date: "",
