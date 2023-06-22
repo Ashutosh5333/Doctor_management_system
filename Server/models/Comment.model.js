@@ -12,6 +12,7 @@ const CommentSchema = Schema({
   name: {
     type: String,
   },
+  rating:{type:Number},
   commentby:{type:Schema.Types.ObjectId,ref:"user"},
   date: {
     type: Date,

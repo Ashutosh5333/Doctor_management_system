@@ -80,6 +80,7 @@ DoctorRouter.delete("/doctor/:Id", async (req, res) => {
   
       const comment = new CommentModel({
         user: user._id,
+        rating:req.body.rating,
         text: req.body.text,
         name: user.name,
       });
