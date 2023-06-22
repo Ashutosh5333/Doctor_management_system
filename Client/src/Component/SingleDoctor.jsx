@@ -20,6 +20,7 @@ import UserNavbar from "./../pages/UserNavbar";
 import { ProjectSkelton } from "./../Admin/ProjectSkelton";
 import UserbottomNavbar from "./UserbottomNavbar";
 import  Ratingcomponent  from "./Ratingcomponent";
+import Ratingdata from "./Ratingdata";
 
 const SingleDoctor = () => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
@@ -41,6 +42,8 @@ const SingleDoctor = () => {
     Date: "",
     pateintname: "",
   });
+
+  // console.log("single",single)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -340,9 +343,16 @@ const SingleDoctor = () => {
         </Box>
       </Flex>
 
-            <Flex h="40vh" mt="10" mb="40">
+            <Flex h="40vh" mt="10" mb="20">
               <Ratingcomponent id={single?._id} />
             </Flex>
+
+           {/* ---------- Show rating and reiview ---------------  */}
+
+           <Flex h="60vh" mt="10" mb="40">
+            <Ratingdata single={single} />    
+           </Flex>
+
 
       {SmallScreen && <UserbottomNavbar />}
     </>

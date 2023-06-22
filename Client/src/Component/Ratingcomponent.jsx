@@ -15,7 +15,7 @@ import { useToast } from '@chakra-ui/react';
 
 
 const Ratingcomponent = ({id}) => {
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
     const [text, setText] = useState('');
     const [loading, SetLoading] = useState("");
     const dispatch = useDispatch()
@@ -93,7 +93,7 @@ const Ratingcomponent = ({id}) => {
   return (
     <>
     
-    <Box p={4} border=".1px solid gray" w={{base:"90vw",md:"50vw",lg:"50vw"}} m="auto" mb="20" >
+    <Box p={4} w={{base:"90vw",md:"50vw",lg:"50vw"}} m="auto" mb="20" >
       <form onSubmit={handleSubmit}>
         <FormControl id="rating">
           <FormLabel>Rating</FormLabel>
