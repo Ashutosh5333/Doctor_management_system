@@ -45,6 +45,7 @@ const Login = () => {
             status: "error",
             title: "Something went wrong",
           });
+          setLoading(false)
          }
          else{
           toast({

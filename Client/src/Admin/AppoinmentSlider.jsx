@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Box, Card, Flex, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Card, Flex, SimpleGrid ,Text, useBreakpointValue } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,7 +24,7 @@ const AppoinmentSlider = () => {
       const res = await axios.get(
         "https://doctorappoinment.onrender.com/countAppointment"
       );
-      //  console.log(res.data.data)
+     
       SetApproved(res.data.data.Approved);
       SetNewAppointment(res.data.data.NewAppoinment);
       Setwaiting(res.data.data.Waiting);
@@ -54,36 +54,39 @@ const AppoinmentSlider = () => {
 
   return (
     <>
-      {!SmallScreen && (
+ 
         <Box
-          h="20vh"
+          // h="80vh"
           w="95%"
           m="auto"
           display={"flex"}
           flexDirection={"column"}
         >
-          <Flex  w="80vw" m="auto"  mt="-5"  gap="5">
+          <Flex  w="80vw" justifyContent={"space-between"}
+            flexDirection={{base:"column",md:"row",lg:"row"}}
+           m="auto"  gap="5">
 
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
-              w={{ md: "100%", lg: "100%" }}
-              h="120px"
+              w={{ base:"100%", md: "100%", lg: "100%" }}
+              h="180px"
             >
               <Text
                 pl={{ lg: "10px" }}
                 align={{ base: "center", lg: "start" }}
-                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                fontSize={{ base: "1.5rem", md: "1.5rem", lg: "1.5rem" }}
                 fontWeight="600"
+                mt={{base:"10"}}
               >
-                Total Appointment
+                 Total Appointment
               </Text>
               <Text
                 pl={"10px"}
-                align={{ base: "start", md: "center", lg: "start" }}
+                align={{ base: "center", lg: "start" }}
                 fontWeight="600"
-                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
-                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+                fontSize={{ base: "2rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "10px", md: "1rem", lg: "1px" }}
               >
                 {TProject}{" "}
               </Text>
@@ -92,48 +95,56 @@ const AppoinmentSlider = () => {
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
-              w={{ md: "100%", lg: "100%" }}
-              h="120px"
+              w={{ base:"100%",  md: "100%", lg: "100%" }}
+              h="180px"
             >
               <Text
                 pl={{ lg: "10px" }}
-                align={{ base: "start", md: "center", lg: "start" }}
-                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                align={{ base: "center", lg: "start" }}
+                fontSize={{ base: "1.5rem", md: "1.5rem", lg: "1.5rem" }}
                 fontWeight="600"
+                mt={{base:"10"}}
               >
-                New Appointment
+                   New Appointment
               </Text>
               <Text
                 pl={"10px"}
-                align={{ base: "start", md: "center", lg: "start" }}
+                align={{ base: "center", md: "center", lg: "start" }}
                 fontWeight="600"
-                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
-                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+                fontSize={{ base: "2rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "10px", md: "1rem", lg: "1px" }}
               >
                 {NewAppointment}{" "}
               </Text>
             </Card>
 
+          </Flex>
+
+          <Flex  w="80vw" justifyContent={"space-between"}
+            flexDirection={{base:"column",md:"row",lg:"row"}}
+           m="auto"  gap="5" mt="5" >
+
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
-              w={{ md: "100%", lg: "100%" }}
-              h="120px"
+              w={{ base:"100%", md: "100%", lg: "100%" }}
+              h="180px"
             >
               <Text
                 pl={{ lg: "10px" }}
                 align={{ base: "center", lg: "start" }}
-                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                fontSize={{ base: "1.5rem", md: "1.5rem", lg: "1.5rem" }}
                 fontWeight="600"
+                mt={{base:"10"}}
               >
                 Approved Appointment
               </Text>
               <Text
                 pl={"10px"}
-                align={{ base: "start", md: "center", lg: "start" }}
+                align={{ base: "center", lg: "start" }}
                 fontWeight="600"
-                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
-                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+                fontSize={{ base: "2rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "10px", md: "1rem", lg: "1px" }}
               >
                 {Approved}{" "}
               </Text>
@@ -142,38 +153,40 @@ const AppoinmentSlider = () => {
             <Card
               style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
               borderLeft="10px solid blue"
-              w={{ md: "100%", lg: "100%" }}
-              h="120px"
+              w={{ base:"100%",  md: "100%", lg: "100%" }}
+              h="180px"
             >
               <Text
                 pl={{ lg: "10px" }}
                 align={{ base: "center", lg: "start" }}
-                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                fontSize={{ base: "1.5rem", md: "1.5rem", lg: "1.5rem" }}
                 fontWeight="600"
+                mt={{base:"10"}}
               >
                 Waiting Appointment
               </Text>
               <Text
                 pl={"10px"}
-                align={{ base: "start", md: "center", lg: "start" }}
+                align={{ base: "center", md: "center", lg: "start" }}
                 fontWeight="600"
-                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
-                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+                fontSize={{ base: "2rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "10px", md: "1rem", lg: "1px" }}
               >
                 {waiting}{" "}
               </Text>
             </Card>
+
           </Flex>
 
 
           {/* --------------- */}
         </Box>
-      )}
+    
 
       {/* ------------------  ---------------- */}
 
        
-      {SmallScreen && (
+      {/* {SmallScreen && (
         <Swiper
           swipeable={true}
           draggable={true}
@@ -277,7 +290,7 @@ const AppoinmentSlider = () => {
             </Card>
           </SwiperSlide>
         </Swiper>
-      )}
+      )} */}
 
     
     </>
@@ -285,3 +298,108 @@ const AppoinmentSlider = () => {
 };
 
 export default AppoinmentSlider;
+
+/**
+ *  <Flex  w="80vw" m="auto"  mt="-5"  gap="5">
+
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="10px solid blue"
+              w={{ md: "100%", lg: "100%" }}
+              h="120px"
+            >
+              <Text
+                pl={{ lg: "10px" }}
+                align={{ base: "center", lg: "start" }}
+                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                fontWeight="600"
+              >
+                Total Appointment
+              </Text>
+              <Text
+                pl={"10px"}
+                align={{ base: "start", md: "center", lg: "start" }}
+                fontWeight="600"
+                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+              >
+                {TProject}{" "}
+              </Text>
+            </Card>
+
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="10px solid blue"
+              w={{ md: "100%", lg: "100%" }}
+              h="120px"
+            >
+              <Text
+                pl={{ lg: "10px" }}
+                align={{ base: "start", md: "center", lg: "start" }}
+                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                fontWeight="600"
+              >
+                New Appointment
+              </Text>
+              <Text
+                pl={"10px"}
+                align={{ base: "start", md: "center", lg: "start" }}
+                fontWeight="600"
+                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+              >
+                {NewAppointment}{" "}
+              </Text>
+            </Card>
+
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="10px solid blue"
+              w={{ md: "100%", lg: "100%" }}
+              h="120px"
+            >
+              <Text
+                pl={{ lg: "10px" }}
+                align={{ base: "center", lg: "start" }}
+                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                fontWeight="600"
+              >
+                Approved Appointment
+              </Text>
+              <Text
+                pl={"10px"}
+                align={{ base: "start", md: "center", lg: "start" }}
+                fontWeight="600"
+                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+              >
+                {Approved}{" "}
+              </Text>
+            </Card>
+
+            <Card
+              style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px" }}
+              borderLeft="10px solid blue"
+              w={{ md: "100%", lg: "100%" }}
+              h="120px"
+            >
+              <Text
+                pl={{ lg: "10px" }}
+                align={{ base: "center", lg: "start" }}
+                fontSize={{ base: ".8rem", md: "1rem", lg: "1rem" }}
+                fontWeight="600"
+              >
+                Waiting Appointment
+              </Text>
+              <Text
+                pl={"10px"}
+                align={{ base: "start", md: "center", lg: "start" }}
+                fontWeight="600"
+                fontSize={{ base: "1rem", md: "1.5rem", lg: "2.3rem" }}
+                mt={{ base: "1px", md: "1rem", lg: "1px" }}
+              >
+                {waiting}{" "}
+              </Text>
+            </Card>
+          </Flex>
+ */

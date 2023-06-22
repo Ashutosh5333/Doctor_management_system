@@ -10,6 +10,7 @@ import { BiLogOut } from 'react-icons/bi';
 
 const Sidebar = () => {
   const navigate = useNavigate()
+  
   const handlelogout = () =>{
     localStorage.clear()
     navigate("/adminlogin")

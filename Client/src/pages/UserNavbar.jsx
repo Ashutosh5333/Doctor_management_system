@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Box, Flex,Text, Image, Input, IconButton, Tooltip, useDisclosure,  } from '@chakra-ui/react'
 import React from 'react'
-import {Link} from "react-router-dom"
+import { useState } from 'react';
+import { Box, Flex,Text, Input, IconButton, Tooltip, useDisclosure,  } from '@chakra-ui/react'
+import {Link, useNavigate} from "react-router-dom"
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 import {FaUserCircle} from "react-icons/fa"
 import {BsSearch} from "react-icons/bs"
@@ -14,15 +14,19 @@ import {FaHospitalUser} from "react-icons/fa"
 const UserNavbar = ({SetInputDoctor}) => {
 const { isOpen, onOpen, onClose } = useDisclosure()
  const dispatch =useDispatch()
+  const navigate= useNavigate()
 
     const isAuth = useSelector(store =>store.AuthReducer.isAuth)
       
      const handleLog = () =>{
-      dispatch(handleLogOut())
+      // dispatch(handleLogOut())
       localStorage.clear()
+      // navigate("/login")
      }
 
-     const userdata = JSON.parse(localStorage.getItem("loggeduser"))     
+     const userdata = JSON.parse(localStorage.getItem("loggeduser"))   
+     
+  
 
   return (
     <>
@@ -35,8 +39,7 @@ const { isOpen, onOpen, onClose } = useDisclosure()
               
             <Flex width={{base : "20%", md :'13%', lg : '10%'}} justifyContent={'center'} >
              <Link to='/doctordash'>
-             {/* <Image w="50px" h="50px" src='http://localhost:3000/static/media/front.303949ce0bf6609b2f0c.jpg' width='100px' m='auto'/> */}
-             <FaHospitalUser fontSize={"3rem"}/>
+           <FaHospitalUser fontSize={"3rem"}/>
              </Link>
             </Flex>
 
@@ -53,11 +56,18 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                </Flex>
 
                <Flex width={{base : "", md  : '25%', lg :'15%'}} justifyContent='space-around' fontSize='25px'>
-               <Tooltip bg='#CBD5E0' color='black' label={ isAuth ? "Logut" : "Login" } ><Link><Text onClick={handleLog}><BiLogOut/></Text></Link></Tooltip>
+               
+               {
+                userdata ?
+               <Tooltip bg='#CBD5E0' color='black' label={userdata? "Logout" :"Login"  } ><Link ><Text onClick={handleLog}><BiLogOut/></Text></Link></Tooltip>
+               :
+               <Tooltip bg='#CBD5E0' color='black' label={ "Login" } ><Link to={ "/login"  } ><Text ><BiLogIn/></Text></Link></Tooltip>
+               }
+
                <Tooltip bg='#CBD5E0' color='black' label="admin"><Link to="/admin" ><Text><RiAdminFill/></Text></Link></Tooltip>
               <Tooltip bg='#CBD5E0' color='black'
                label={userdata ? userdata.userName :"Profile" }  >
-              <Link to="/userprofile" ><Text><FaUserCircle/></Text></Link></Tooltip>
+              <Link to="/userprofile" ><Text ><FaUserCircle/></Text></Link></Tooltip>
               </Flex>
               </Flex>
           </Flex> 
