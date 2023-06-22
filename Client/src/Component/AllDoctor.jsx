@@ -16,7 +16,6 @@ import { Link } from "react-router-dom";
 const AllDoctor = ({inputdoctor}) => {
   const dispatch = useDispatch();
   const doctordata = useSelector((store) => store.AppReducer.Doctordata);
-  //  console.log("doctordata",doctordata)
 
   useEffect(() => {
     dispatch(GetProjectData);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   Box,
   Textarea,
@@ -9,9 +9,10 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
-import { useDispatch } from 'react-redux';
-import { PostComment } from '../Redux/AppReducer/Action';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetProjectData, PostComment } from '../Redux/AppReducer/Action';
 import { useToast } from '@chakra-ui/react';
+import { getSingleDoctordetail } from './../Redux/AppReducer/Action';
 
 
 const Ratingcomponent = ({id}) => {
@@ -20,6 +21,13 @@ const Ratingcomponent = ({id}) => {
     const [loading, SetLoading] = useState("");
     const dispatch = useDispatch()
     const toast = useToast();
+    const doctordata = useSelector((store) => store.AppReducer.Doctordata);
+   
+  
+      useEffect(() =>{
+        dispatch(GetProjectData);
+      },[])
+  
     
   
     const handleRatingClick = (Rating) => {
@@ -35,6 +43,10 @@ const Ratingcomponent = ({id}) => {
       text
    }
   
+   useEffect(() => {
+    dispatch(getSingleDoctordetail(id))
+     
+  }, [id]);
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -42,7 +54,7 @@ const Ratingcomponent = ({id}) => {
       SetLoading(true)
       dispatch(PostComment(id,post))
       .then((res) =>{
-         console.log(res)
+        
             if( res.type==="POSTCOMMENTSUCESS" && res.payload.msg ==="Comment added successfully"){
               toast({
                 position: "top",
@@ -50,6 +62,9 @@ const Ratingcomponent = ({id}) => {
                 status: "success",
                 title: res.payload.msg,
               })
+            
+              dispatch(getSingleDoctordetail(id))
+              // window.location.reload()
               SetLoading(false)
             }
       }).catch((err) =>{
@@ -67,7 +82,7 @@ const Ratingcomponent = ({id}) => {
       setText('');
     };
 
-    //  console.log("rating", post)
+   
    
 
     const renderStars = () => {

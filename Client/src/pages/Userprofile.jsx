@@ -142,7 +142,7 @@ export const Userprofile = () => {
                           {" "}
                           Apply Date{" "}
                         </Text>
-                        {/* <Text>  */}
+                     
                         <Text> {el.Date}</Text>
                    
                       </Flex>
@@ -151,7 +151,7 @@ export const Userprofile = () => {
                     <Flex h="8vh" gap="2" mt="5">
                       <Flex
                         justifyContent={"space-around"}
-                        // borderRadius={"10"}
+                      
                         w="100%"
                         p="2"
                         textAlign={"start"}

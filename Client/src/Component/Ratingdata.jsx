@@ -4,17 +4,11 @@ import { Box, Text, Flex, Avatar, Badge, Divider } from '@chakra-ui/react';
 
 
 const Ratingdata = ({single}) => {
-    // console.log("singledata" ,single?.comments)
+   
 
       const comment = single?.comments
 
-       console.log("comment", comment)
-
-       
-     
-
-  // const overallRating = comment.reduce((total, review) => total + review.rating, 0) / comment.length;
-
+    
 
   return (
     <>
@@ -32,15 +26,15 @@ const Ratingdata = ({single}) => {
             {/* <Badge colorScheme="green">{overallRating.toFixed(1)}</Badge> */}
           </Box>
           <Divider orientation="vertical" mx={2} />
-          <Text>{comment.length} Reviews</Text>
+          {/* <Text>{comment?.length} Reviews</Text> */}
         </Flex>
       </Box>
 
-      {comment.length > 0 && comment.map((review) => (
+      {comment && comment.map((review) => (
         <Box key={review.id} mb={4} p={2} >
           <Flex align="center" mb={2}  
              justifyContent={"space-between"}
-            //  border="2px solid red"
+       
              w="40vw" 
           >
             <Flex>

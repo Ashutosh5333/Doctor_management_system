@@ -43,7 +43,7 @@ const SingleDoctor = () => {
     pateintname: "",
   });
 
-  // console.log("single",single)
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
