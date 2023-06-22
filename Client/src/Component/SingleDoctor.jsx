@@ -341,7 +341,7 @@ const SingleDoctor = () => {
       </Flex>
 
             <Flex h="40vh" mt="10" mb="40">
-              <Ratingcomponent />
+              <Ratingcomponent id={single?._id} />
             </Flex>
 
       {SmallScreen && <UserbottomNavbar />}

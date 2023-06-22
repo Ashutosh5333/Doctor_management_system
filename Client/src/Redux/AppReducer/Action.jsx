@@ -130,9 +130,30 @@ const CncelappointmentFailure = () =>{
  }
 }
 
+  // ------------------ Comment ------------------- //
+
+  
+const  CommentReq = () =>{
+  return {
+    type :types.POSTCOMMENTREQ
+  }
+}
+
+const Commentsucess = (payload) =>{
+  return {
+     type :types.POSTCOMMENTSUCESS,
+     payload
+  }
+}
+
+const CommentFailure = () =>{
+ return {
+   type :types.POSTCOMMENTFAILURE
+ }
+}
+
 
 //  -----------------  Appoinmnet cancel ------------------ //
-
 
  const token = JSON.parse(localStorage.getItem("usertoken"))
 
@@ -155,7 +176,7 @@ const CncelappointmentFailure = () =>{
   };
 
   
-   //// ---------------- get doctor data ---------------------- //
+   // ---------------- get doctor data ---------------------- //
 
 export const GetProjectData = (dispatch) => {
   dispatch(getdatareq());
@@ -246,3 +267,26 @@ return        dispatch(getappointmentsucess(r.data))
           })
         
         } 
+
+
+        //  -------------- post Commnet ---------------- //
+
+        
+
+export const PostComment =(id , payload) =>  (dispatch) =>{
+  dispatch(CommentReq())
+ return axios.post(`https://doctorappoinment.onrender.com/comments/${id}`, payload,{
+  headers:{
+     "Content-Type":"application/json",
+     "Authorization":`Bearer ${token}`
+   },
+ })
+  .then((r) =>{
+return        dispatch(Commentsucess(r.data))
+  })
+  .catch((err) =>{
+   dispatch(CommentFailure())
+   console.log(err)
+  })
+
+} 

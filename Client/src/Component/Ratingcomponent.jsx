@@ -7,38 +7,67 @@ import {
   FormControl,
   FormLabel,
   Icon,
-  Input,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
+import { useDispatch } from 'react-redux';
+import { PostComment } from '../Redux/AppReducer/Action';
+import { useToast } from '@chakra-ui/react';
 
 
-const Ratingcomponent = () => {
+const Ratingcomponent = ({id}) => {
     const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState('');
-     const post={
-        rating,
-        comment
-     }
-  console.log( "init" ,post)
- 
+    const [text, setText] = useState('');
+    const [loading, SetLoading] = useState("");
+    const dispatch = useDispatch()
+    const toast = useToast();
+    
   
     const handleRatingClick = (Rating) => {
           setRating(Rating)
     };
 
     const handleCommentChange = (e) => {
-         setComment(e.target.value)
-    };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      
-      setRating(0);
-      setComment('');
+      setText(e.target.value)
     };
 
-     console.log("rating", post)
+    const post={
+      rating,
+      text
+   }
+  
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+     
+      SetLoading(true)
+      dispatch(PostComment(id,post))
+      .then((res) =>{
+         console.log(res)
+            if( res.type==="POSTCOMMENTSUCESS" && res.payload.msg ==="Comment added successfully"){
+              toast({
+                position: "top",
+                colorScheme: "green",
+                status: "success",
+                title: res.payload.msg,
+              })
+              SetLoading(false)
+            }
+      }).catch((err) =>{
+        console.log(err)
+        toast({
+          position: "top",
+          colorScheme: "red",
+          status: "error",
+          title: "Something went wrong",
+        });
+        SetLoading(false)
+      })
+      
+      setRating(0);
+      setText('');
+    };
+
+    //  console.log("rating", post)
    
 
     const renderStars = () => {
@@ -75,13 +104,20 @@ const Ratingcomponent = () => {
 
         <FormControl id="comment" mt={4}>
           <FormLabel>Comment</FormLabel>
-          <Textarea value={comment} onChange={handleCommentChange} />
+          <Textarea value={text} onChange={handleCommentChange} />
         </FormControl>
 
         <Flex mt={4} justify="flex-end">
-          <Button type="submit" colorScheme="blue">
+          <Button type="submit" colorScheme="blue"
+          
+          isLoading={loading}
+
+          >
             Submit
+
           </Button>
+
+
         </Flex>
 
       </form>
