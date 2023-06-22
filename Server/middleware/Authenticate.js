@@ -9,7 +9,7 @@ const Authenticate = (req,res,next) =>{
          if(decoded){
            const userId = decoded.userId
            req.body.userId= userId
-          
+            //   res.body.bookedby=decoded.userId
             // console.log("userId",userId)
             next()
          }

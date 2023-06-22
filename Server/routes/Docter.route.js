@@ -8,18 +8,30 @@ const DoctorRouter = express.Router();
 
 DoctorRouter.get("/doctor", async (req, res) => {
   try {
-    const Doctordata = await DoctorModel.find();
+    const Doctordata = await DoctorModel.find().populate("bookedby",["name","email"])
+                                            .populate("comments")
+                                            .populate("comments.commentby",["name","email"])
     res.send(Doctordata);
   } catch (err) {
     console.log(err);
   }
 });
+ 
 
-DoctorRouter.post("/doctor/create", async (req, res) => {
+DoctorRouter.post("/doctor/create", Authenticate, async (req, res) => {
   const payload = req.body;
-  const Doctordata = new DoctorModel(payload);
-  await Doctordata.save();
-  res.send("userdata Created successfully");
+  const userId = req.body.userId;
+  try {
+    const bookedappoinment = await DoctorModel.create({
+      ...payload,
+      bookedby: userId,
+    });
+    await bookedappoinment.save();
+    res.send({ msg: "Doctor data created Succesfully" });
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
 });
 
 DoctorRouter.patch("/doctor/:Id", async (req, res) => {
@@ -54,36 +66,37 @@ DoctorRouter.delete("/doctor/:Id", async (req, res) => {
 });
 
 
-  //  ------------------ Comment  ------------------ //
+   //  ------------------ Comment  ------------------ //
 
-DoctorRouter.post("/comments/:id", Authenticate, async (req, res) => {
-  try {
+   DoctorRouter.post("/comments/:id", Authenticate, async (req, res) => {
+      const userId = req.body.userId
+    try {
    
-    const post = await DoctorModel.findById(req.params.id).populate("comments");
-    // const user = await Usermodel.findById(req.body);
+      const post = await DoctorModel.findById(req.params.id).populate("comments");
+      const user = await Usermodel.findById(userId);
+          //  console.log(user)
+    
+      if (!post) return res.status(404).send("Post not found");
+  
+      const comment = new CommentModel({
+        user: user._id,
+        text: req.body.text,
+        name: user.name,
+      });
+  
    
-    if (!post) return res.status(404).send("Post not found");
-
-    const comment = new CommentModel({
-      // user: user._id,
-      text: req.body.text,
-      // name: user.name,
-    });
-
-    // SAVE COMMENT
-    await comment.save();
-
-    post.comments.unshift(comment);
-    await post.save();
-
-    res.send({ msg: "Comment added successfully", comments: post.comments });
-  } catch (error) {
-    console.log(error);
-    res.status(400).send("Internal Server error");
-  }
-});
-
-
+      await comment.save();
+  
+      post.comments.unshift(comment);
+      await post.save();
+  
+      res.send({ msg: "Comment added successfully", comments: post.comments });
+    } catch (error) {
+      console.log(error);
+      res.status(400).send("Internal Server error");
+    }
+  });
+  
 
 
 
@@ -91,3 +104,34 @@ DoctorRouter.post("/comments/:id", Authenticate, async (req, res) => {
 module.exports = {
   DoctorRouter,
 };
+
+/**
+ * DoctorRouter.post("/comments/:id", Authenticate,  async (req, res) => {
+    const userId= req.body.userId
+  try {
+    const post = await DoctorModel.findById(req.params.id)
+    .populate("comments")
+    .populate("comments.commentby",["name"])
+   
+    if (!post) return res.status(404).send("Post not found");
+
+    const comment = new CommentModel({
+      // user: user[0]._id,
+      text: req.body.text,
+      commentby:userId
+      // name: user[0].name,
+    });
+  
+    await comment.save();
+    post.comments.unshift(comment) ;
+    await post.save();
+
+  
+    res.send({ msg: "Comment added successfully", comments: post.comments });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+ */

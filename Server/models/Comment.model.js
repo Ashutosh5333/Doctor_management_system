@@ -12,26 +12,7 @@ const CommentSchema = Schema({
   name: {
     type: String,
   },
-
-  replies: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-      },
-      text: {
-        type: String,
-        required: true,
-      },
-      name: {
-        type: String,
-      },
-
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
+  commentby:{type:Schema.Types.ObjectId,ref:"user"},
   date: {
     type: Date,
     default: Date.now,
@@ -41,3 +22,11 @@ const CommentSchema = Schema({
 const CommentModel = model("comment", CommentSchema);
 
 module.exports = { CommentModel };
+
+/**
+ * text: [{
+    type: String,
+    required: true,
+    bookedby:{type:Schema.Types.ObjectId,ref:"user",required:true}
+  }]
+ */
