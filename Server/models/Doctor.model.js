@@ -7,6 +7,7 @@ const DoctorSchema = Schema({
      name:String,
      About:String,
      userId:String,
+     Specilist:String,
      bookedby:{type:Schema.Types.ObjectId,ref:"user",required:true},
      comments: [{ type: Schema.Types.ObjectId, ref: "comment", default: [],
      bookedby:{type:Schema.Types.ObjectId,ref:"user",required:true}

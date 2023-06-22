@@ -10,7 +10,7 @@ DoctorRouter.get("/doctor", async (req, res) => {
   try {
     const Doctordata = await DoctorModel.find().populate("bookedby",["name","email"])
                                             .populate("comments")
-                                            .populate("comments.commentby",["name","email"])
+                                    
     res.send(Doctordata);
   } catch (err) {
     console.log(err);
@@ -104,34 +104,3 @@ DoctorRouter.delete("/doctor/:Id", async (req, res) => {
 module.exports = {
   DoctorRouter,
 };
-
-/**
- * DoctorRouter.post("/comments/:id", Authenticate,  async (req, res) => {
-    const userId= req.body.userId
-  try {
-    const post = await DoctorModel.findById(req.params.id)
-    .populate("comments")
-    .populate("comments.commentby",["name"])
-   
-    if (!post) return res.status(404).send("Post not found");
-
-    const comment = new CommentModel({
-      // user: user[0]._id,
-      text: req.body.text,
-      commentby:userId
-      // name: user[0].name,
-    });
-  
-    await comment.save();
-    post.comments.unshift(comment) ;
-    await post.save();
-
-  
-    res.send({ msg: "Comment added successfully", comments: post.comments });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
- */

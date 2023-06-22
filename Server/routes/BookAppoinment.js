@@ -20,7 +20,6 @@ AppointmentRouter.get("/allappoinment",async (req,res) =>{
       }
       else{
        const newdata = await AppointmentModel.find().skip(skip).limit(limit)
-       .populate("comments.bookedby",["name"])
        res.json(newdata)
       }
     }catch(err){
