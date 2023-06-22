@@ -8,15 +8,31 @@ const DoctorRouter = express.Router();
 
 DoctorRouter.get("/doctor", async (req, res) => {
   try {
-    const Doctordata = await DoctorModel.find().populate("bookedby",["name","email"])
-                                            .populate("comments")
-                                    
+    const Doctordata = await DoctorModel.find()
+      .populate("bookedby", ["name", "email"])
+      .populate("comments");
+
+    res.send(Doctordata);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
+DoctorRouter.get("/doctor/:Id", async (req, res) => {
+  const Id = req.params.Id;
+  try {
+    const Doctordata = await DoctorModel.findById({ _id: Id })
+    .populate("bookedby", ["name", "email"])
+      .populate("comments");
+
     res.send(Doctordata);
   } catch (err) {
     console.log(err);
   }
 });
  
+
 
 DoctorRouter.post("/doctor/create", Authenticate, async (req, res) => {
   const payload = req.body;
@@ -45,15 +61,6 @@ DoctorRouter.patch("/doctor/:Id", async (req, res) => {
   }
 });
 
-DoctorRouter.get("/doctor/:Id", async (req, res) => {
-  const Id = req.params.Id;
-  try {
-    const Doctordata = await DoctorModel.findById({ _id: Id });
-    res.send(Doctordata);
-  } catch (err) {
-    console.log(err);
-  }
-});
 
 DoctorRouter.delete("/doctor/:Id", async (req, res) => {
   const Id = req.params.Id;
