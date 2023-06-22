@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Image,
-  useColorModeValue,
   Text,
   Flex,
   Heading,
@@ -10,9 +9,8 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 import {
   BookAppointment,
   getSingleDoctordetail,
@@ -21,6 +19,7 @@ import { Card, Input } from "@chakra-ui/react";
 import UserNavbar from "./../pages/UserNavbar";
 import { ProjectSkelton } from "./../Admin/ProjectSkelton";
 import UserbottomNavbar from "./UserbottomNavbar";
+import  Ratingcomponent  from "./Ratingcomponent";
 
 const SingleDoctor = () => {
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
@@ -30,15 +29,13 @@ const SingleDoctor = () => {
     lg: false,
   });
   const toast = useToast();
-  const lightColor = useColorModeValue("#757575", "#9aa0a6");
   const [loading, setLoading] = useState(false);
   const [single, Setsingle] = useState();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const navigate = useNavigate();
-   const Number = Math.random(100)
+  const Number = Math.random(100);
   const [post, SetPost] = useState({
-    ANumber:Number,
+    ANumber: Number,
     Mobile: "",
     Doctor: "",
     Date: "",
@@ -57,7 +54,7 @@ const SingleDoctor = () => {
       post.pateintname !== "" &&
       post.Date !== ""
     ) {
-      setLoading(true)
+      setLoading(true);
       dispatch(BookAppointment(post)).then((res) => {
         if (
           res.type == "BOOKAPPOINMETUCESS" &&
@@ -69,7 +66,7 @@ const SingleDoctor = () => {
             status: "success",
             title: "Appoinment registered Sucessfully",
           });
-          setLoading(false)
+          setLoading(false);
         }
       });
     } else {
@@ -97,20 +94,26 @@ const SingleDoctor = () => {
       {!SmallScreen && <UserNavbar />}
 
       <Flex flexDirection={"column"} gap="10px">
-        {/* -------------------------------- */}
+
+
+      
 
         {!SmallScreenDoctor && (
           <Box
-            h="65vh"
+         
             width={{ base: "80vw", md: "90vw", lg: "90vw" }}
             m="auto"
             mt="-10"
             p="6"
+            mb="20"
             spacing={3}
           >
             {single ? (
               <Flex boxShadow={"dark"} justifyContent={"space-between"} gap="5">
-                <Flex w="40%" h="60vh">
+                <Flex
+                  w="40%"
+                  // h="60vh"
+                >
                   <Card m="auto">
                     <Image
                       objectFit="cover"
@@ -122,7 +125,11 @@ const SingleDoctor = () => {
                   </Card>
                 </Flex>
 
-                <Flex w="50%" h="60vh" flexDirection={"column"}>
+                <Flex
+                  w="50%"
+                  // h="60vh"
+                  flexDirection={"column"}
+                >
                   <Box w="90%" m="auto">
                     <Text fontWeight={"600"} color="#050452">
                       {" "}
@@ -151,13 +158,19 @@ const SingleDoctor = () => {
             ) : (
               <ProjectSkelton />
             )}
+
+            {/* <Flex  h="50vh" mt="20">
+              <Ratingcomponent />
+            </Flex> */}
+
           </Box>
         )}
 
-        {/* ------------------------------------  */}
+    
+
+
         {SmallScreen && (
           <Box
-            h="70vh"
             width={{ base: "90vw", md: "90vw" }}
             m="auto"
             p="6"
@@ -211,10 +224,15 @@ const SingleDoctor = () => {
                 </Box>
               </Flex>
             </Flex>
+
+           
+
           </Box>
         )}
 
+
         {/* --------------------------- Form ------------------------------- */}
+
 
         <Box
           w={{ base: "90vw", md: "80vw", lg: "80vw" }}
@@ -321,6 +339,10 @@ const SingleDoctor = () => {
           </Box>
         </Box>
       </Flex>
+
+            <Flex h="40vh" mt="10" mb="40">
+              <Ratingcomponent />
+            </Flex>
 
       {SmallScreen && <UserbottomNavbar />}
     </>
