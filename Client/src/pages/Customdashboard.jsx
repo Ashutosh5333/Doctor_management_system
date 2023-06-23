@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Box, Input, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 import { Text , Flex,Image, IconButton,Card } from '@chakra-ui/react';
 import { Heading } from '@chakra-ui/react';
@@ -8,31 +8,25 @@ import AllDoctor from '../Component/AllDoctor';
 import {
   Drawer,
   DrawerBody,  DrawerHeader,  DrawerOverlay,  DrawerContent} from "@chakra-ui/react";
-import { CloseIcon, HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
-import {Link, Navigate} from "react-router-dom"
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import {Link, Navigate,useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux';
-import { handleLogOut } from './../Redux/AuthReducer/Action';
 
 const Customdashboard = ({inputdoctor,SetInputDoctor}) => {
    const dispatch = useDispatch()
+   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure();   
   const SmallScreen = useBreakpointValue({ base: true, md: false, lg: false });
   
   const handleLog = () =>{
     localStorage.clear()
-    dispatch(handleLogOut())
+    navigate("/login")
+   
   }
   const loggeddata = JSON.parse(localStorage.getItem("loggeduser"))
    
     
-     const check =() =>{
-        if(loggeddata.userName ===""){
-             Navigate("/login") 
-        }else{
-          Navigate("/doctordash")
-        }
-     }
-
+    
 
   return (
     <>

@@ -44,21 +44,22 @@ const getsingledoctorFail = () => {
 
 
       
-const getmyAppoinmentReq = () =>{
+const GETALLAppoinmentReq = () =>{
   return {
-     type: types.GETMYAPPOINMENTREQ
+     type: types.ALLAPPOINMENTREQ
   }
 } 
-const getmyAppoinmentSucess = (payload) => {
+
+const GETALLAppoinmentSucess = (payload) => {
   return {
-     type :types.GETMYAPPOINMENTSUCESS,
+     type :types.ALLAPPOINMENTSUCESS,
      payload
 }
 }
 
-const getmyAppoinmentFail = () => {
+const GETALLAppoinmentFail = () => {
  return {
-     type :types.GETMYAPPOINMENTFAILURE
+     type :types.ALLAPPOINMENTFAILURE
  }
 }
 
@@ -160,22 +161,6 @@ const CommentFailure = () =>{
 
 
 
-  //  ------------------- My Appoinment req -------------------- //
-
-
-
-  export const GetMyAppoinmentData = (dispatch) => {
-    dispatch(getdatareq());
-    return axios.get(`https://doctorappoinment.onrender.com/doctor`)
-      .then((r) => {
-        return dispatch(getdatasuccess(r.data));
-      })
-      .catch((err) => {
-        dispatch(getdatafailure());
-      });
-  };
-
-  
    // ---------------- get doctor data ---------------------- //
 
 export const GetProjectData = (dispatch) => {
@@ -188,6 +173,7 @@ export const GetProjectData = (dispatch) => {
       dispatch(getdatafailure());
     });
 };
+
 
 // --------------------   Single Appoinment data  ----------------------//
 
@@ -290,3 +276,4 @@ return        dispatch(Commentsucess(r.data))
   })
 
 } 
+

@@ -35,14 +35,14 @@ const MainRoutes = () => {
      <Route  path='/doctordash' element={
         // <PrivateRoute>
      <UserDashboard/>
-      // </PrivateRoute>
+    //  </PrivateRoute>
      } />
      
      <Route  path='/doctordash/:id' element={
 
      <PrivateRoute>
      <SingleDoctor/>
-     </PrivateRoute>
+      </PrivateRoute>
   
      } />
 

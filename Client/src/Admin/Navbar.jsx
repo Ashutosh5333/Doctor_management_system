@@ -12,7 +12,7 @@ const Navbar = () => {
      backgroundColor={"#050452"} borderEndStartRadius={"50px"}
     >
       <Box mt="40px" display={"flex"} justifyContent={"space-around"} >
-     <Text color="#ffffff" textAlign={"center"} fontSize={{base:"1rem",md:"1.2rem",lg:"1.5rem"}}  >  Doctor Appoinment Booking system</Text>
+     <Text color="#ffffff" textAlign={"center"} fontSize={{base:"1rem",md:"1.2rem",lg:"1.5rem"}}  > Doctor Appoinment Booking Admin  </Text>
 
         <Link to="/doctordash">
        <Text color="#ffffff"  fontSize={{base:"1rem",md:"1.2rem",lg:"1.5rem"}} >

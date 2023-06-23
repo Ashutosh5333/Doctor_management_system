@@ -41,6 +41,7 @@ const AppoinmentListCard = () => {
     try {
       const res = await fetch(
         `https://doctorappoinment.onrender.com/allappoinment/?page=${current}&limit=${page}`
+        // `http://localhost:8000/allappoinment/?page=${current}&limit=${page}`
       );
       const data = await res.json();
       SetProjectdata(data);
@@ -48,6 +49,7 @@ const AppoinmentListCard = () => {
       console.log(err);
     }
   }
+
 
   const handleApproved = async (_id) =>{
           try{
@@ -83,6 +85,7 @@ const handleprev = () => {
   return (
     <>
       <Box boxShadow={"lg"} rounded={"lg"}>
+
         {/* -------------  */}
 
         <Box display="flex" justifyContent={"space-between"} p="2">
@@ -112,7 +115,7 @@ const handleprev = () => {
 
         {/* ------ Serach bar ^^^ --------  */}
 
-        <Box w="100%" m="auto">
+        <Box w="100%" m="auto" >
           {!SmallScreen && (
             <TableContainer w="100%" align="start" mb="10">
               <Table variant="simple">
@@ -360,7 +363,7 @@ const handleprev = () => {
           justifyContent={"center"}
         >
           <Pagination
-            total={3}
+            total={4}
             handlenext={handlenext}
             handleprev={handleprev}
             current={current}

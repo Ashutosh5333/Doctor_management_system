@@ -14,7 +14,6 @@ const AppoinmentSlider = () => {
   const [waiting, Setwaiting] = useState(0);
   const [NewAppointment, SetNewAppointment] = useState(0);
 
-  //
   useEffect(() => {
     Allproject();
   }, []);
@@ -56,7 +55,7 @@ const AppoinmentSlider = () => {
     <>
  
         <Box
-          // h="80vh"
+    
           w="95%"
           m="auto"
           display={"flex"}
