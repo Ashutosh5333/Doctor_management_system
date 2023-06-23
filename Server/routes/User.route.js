@@ -64,11 +64,12 @@ const UserRouter = express.Router();
                 });
 
                 }else{
-                  res.send("Please check email and password")
+                  res.status(400).send({ "msg": "Email id not registered" });
+   
                 }
            }
            catch(err){
-              res.send("Something went wrong")
+              res.send({  "msg" :"Something went wrong"})
            }
        })
 

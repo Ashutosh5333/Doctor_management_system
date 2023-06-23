@@ -14,14 +14,9 @@ AppointmentRouter.get("/allappoinment",async (req,res) =>{
       const limit = parseInt(req.query.limit) || 10;
       const skip = (page-1) * limit ;
      
-      if (sortBy) {
-        let sort = await AppointmentModel.find().sort({ [sortBy]: 1 }).skip(skip).limit(limit);
-        return res.send(sort)
-      }
-      else{
        const newdata = await AppointmentModel.find().skip(skip).limit(limit)
        res.json(newdata)
-      }
+      
     }catch(err){
       console.log(err)
     }
