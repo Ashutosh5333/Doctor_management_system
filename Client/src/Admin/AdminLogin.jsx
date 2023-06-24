@@ -46,6 +46,8 @@ const AdminLogin = () => {
       setLoading(true);
       dispatch(Adminpost(post))
         .then((res) => {
+           console.log(res)
+           setLoading(false);
           if (res.type === "ADMINUSERSUCESS") {
             if (res.payload.msg !== "Loginsucessfull") {
               toast({
@@ -67,6 +69,7 @@ const AdminLogin = () => {
               setLoading(false);
             }
           }
+
         })
     }
     if (post.email == "") {

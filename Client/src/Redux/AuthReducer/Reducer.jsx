@@ -14,7 +14,13 @@ export const Reducer = (state = initailState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-   
+    case  types.LOGINUSERREQ : 
+    return {
+        ...state,
+        isLoading:true,
+        // isError:false,
+        isAuth:false
+    }
       case  types.LOGINUSERSUCESS : 
       return {
           ...state,
@@ -23,6 +29,14 @@ export const Reducer = (state = initailState, action) => {
           token:payload,
           isAuth:true
       }
+      case  types.LOGINUSERFAILURE : 
+      return {
+          ...state,
+          isLoading:true,
+          isError:true,
+          isAuth:false
+      }
+
       case  types.SIGNUPUSERSUCESS:
       return {
           ...state,

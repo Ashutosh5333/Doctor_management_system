@@ -35,19 +35,20 @@ const Login = () => {
   const handleSubmit = () => {
     if (post.email !== ""  && post.password !== "") {
       setLoading(true)
+
       dispatch(Loginpost(post))
-      .then((res) =>{
-       
-         if(res.type === "LOGINUSERSUCESS" && res.payload.msg !== "loginSucessfull"){
+      .then((res) =>{ 
+        //  console.log( "res", res)
+         if(res.type === "LOGINUSERSUCESS" ){
+         if (res.payload.msg !== "loginSucessfull") {
           toast({
             position: "top",
             colorScheme: "red",
             status: "error",
-            title: "Something went wrong",
+            title: res.payload.msg,
           });
           setLoading(false)
-         }
-         else{
+        }else{
           toast({
             position: "top",
             colorScheme: "green",
@@ -59,6 +60,20 @@ const Login = () => {
           navigate("/doctordash")
           setLoading(false)
          }
+      }
+      else{
+        toast({
+          position: "top",
+          colorScheme: "red",
+          status: "error",
+          title: "Email id is Not registered",
+        });
+        setLoading(false)
+      }
+         
+      }).catch((err) =>{
+        console.log(err)
+        setLoading(false)
       })
    
  } 
@@ -213,3 +228,27 @@ const Login = () => {
 };
 
 export default Login;
+
+/**
+ *   if(res.type === "LOGINUSERSUCESS" && res.payload.msg !== "loginSucessfull"){
+          toast({
+            position: "top",
+            colorScheme: "red",
+            status: "error",
+            title: "Something went wrong",
+          });
+          setLoading(false)
+         }
+         else{
+          toast({
+            position: "top",
+            colorScheme: "green",
+            status: "success",
+            title: "Logged In Sucessfully",
+          })
+          localStorage.setItem("usertoken",JSON.stringify(res.payload.token))
+          localStorage.setItem("loggeduser", JSON.stringify(res.payload.data))
+          navigate("/doctordash")
+          setLoading(false)
+         }
+ */

@@ -76,7 +76,7 @@ export const Loginpost = (payload) => (dispatch) => {
       return dispatch(getLoginsuccess(r.data));
     })
     .catch((err) => {
-      dispatch(geLoginfailure());
+  return    dispatch(geLoginfailure());
     });
 };
 
