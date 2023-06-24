@@ -43,7 +43,6 @@ const UserRouter = express.Router();
            try{
               const user = await Usermodel.find({email})
            
-
               if(user.length>0){
                 const hasedpassword = user[0].password
             
@@ -73,11 +72,7 @@ const UserRouter = express.Router();
            }
        })
 
-       
-       UserRouter.get("/pro", Authenticate, (req,res) =>{       
-              res.send("hello product page")
-
-       })
+  
 
 
 
